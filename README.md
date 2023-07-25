@@ -4,4 +4,4 @@
 
    关于UI层会考虑将XML和全新的UI库Compose进行结合使用
 
-2. 
+2. 架构模式参考https://github.com/tolgaprm/Mova-MovieApp
