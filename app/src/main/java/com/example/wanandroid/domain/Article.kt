@@ -2,6 +2,36 @@ package com.example.wanandroid.domain
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import retrofit2.Response
+
+@Keep
+data class BaseResponseBean(
+    @SerializedName("data")
+    val data: ResponseBean,
+    @SerializedName("errorCode")
+    val errorCode: Int,
+    @SerializedName("errorMsg")
+    val errorMsg: String,
+)
+
+@Keep
+data class ResponseBean(
+    @SerializedName("curPage")
+    val curPage: Int,
+    @SerializedName("datas")
+    val datas: List<Article>,
+    @SerializedName("offset")
+    val offset: Int,
+    @SerializedName("over")
+    val over: Boolean,
+    @SerializedName("pageCount")
+    val pageCount: Int,
+    @SerializedName("size")
+    val size: Int,
+    @SerializedName("total")
+    val total: Int,
+)
+
 
 @Keep
 data class Article(
@@ -60,7 +90,7 @@ data class Article(
     @SerializedName("superChapterName")
     val superChapterName: String,
     @SerializedName("tags")
-    val tags: List<String>,
+    val tags: List<Tag>,
     @SerializedName("title")
     val title: String,
     @SerializedName("type")
@@ -71,4 +101,12 @@ data class Article(
     val visible: Int,
     @SerializedName("zan")
     val zan: Int,
+)
+
+@Keep
+data class Tag(
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("url")
+    val url: String,
 )
