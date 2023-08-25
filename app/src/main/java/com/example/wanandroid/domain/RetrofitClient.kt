@@ -1,5 +1,10 @@
 package com.example.wanandroid.domain
 
+import com.example.wanandroid.domain.calladapter.FlowCallAdapterFactory
+import com.google.gson.ExclusionStrategy
+import com.google.gson.FieldAttributes
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,7 +19,7 @@ object RetrofitClient {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addCallAdapterFactory(FlowCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }

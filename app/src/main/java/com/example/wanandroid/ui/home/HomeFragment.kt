@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
@@ -41,11 +42,11 @@ class HomeFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            homeViewModel.getArticles().collectLatest { articles ->
-                articles.forEach {
-                    textView.text = it.link
-                }
-            }
+            // homeViewModel.getArticles().collectLatest { articles ->
+            //     articles.forEach {
+            //         textView.text = it.link
+            //     }
+            // }
         }
         return root
     }

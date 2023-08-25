@@ -1,8 +1,7 @@
-package com.example.wanandroid.domain
+package com.example.wanandroid.domain.bean
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-import retrofit2.Response
 
 @Keep
 data class BaseResponseBean(

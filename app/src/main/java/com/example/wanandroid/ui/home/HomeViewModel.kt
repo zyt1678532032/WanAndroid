@@ -3,11 +3,13 @@ package com.example.wanandroid.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.wanandroid.domain.Article
+import androidx.lifecycle.viewModelScope
+import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.domain.RetrofitClient
 import com.example.wanandroid.domain.WanAndroidAPI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
@@ -15,17 +17,16 @@ class HomeViewModel : ViewModel() {
         value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
-    // var articles: Flow<List<Article>> = flowOf()
 
     init {
-        // getArticles()
+        getArticles()
     }
 
-    fun getArticles(): Flow<List<Article>> {
+    fun getArticles() {
         val retrofit = RetrofitClient.getRetrofitClient()
         val api = retrofit.create(WanAndroidAPI::class.java)
-        return flow {
-            emit(api.getArticles().data.datas)
+        viewModelScope.launch {
+            api.getArticles()
         }
     }
 }
