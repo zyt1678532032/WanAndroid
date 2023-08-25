@@ -20,5 +20,5 @@ data class Banner(
     @SerializedName("type")
     val type: Int,
     @SerializedName("url")
-    val url: String,
+    val url: String
 )

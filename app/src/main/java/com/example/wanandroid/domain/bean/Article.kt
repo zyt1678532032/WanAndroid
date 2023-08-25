@@ -3,16 +3,6 @@ package com.example.wanandroid.domain.bean
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
-// @Keep
-// data class BaseResponseBean(
-//     @SerializedName("data")
-//     val data: ResponseBean,
-//     @SerializedName("errorCode")
-//     val errorCode: Int,
-//     @SerializedName("errorMsg")
-//     val errorMsg: String,
-// )
-
 @Keep
 data class ArticleBean(
     @SerializedName("curPage")
