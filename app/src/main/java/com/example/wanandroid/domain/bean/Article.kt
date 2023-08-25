@@ -3,22 +3,22 @@ package com.example.wanandroid.domain.bean
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
-@Keep
-data class BaseResponseBean(
-    @SerializedName("data")
-    val data: ResponseBean,
-    @SerializedName("errorCode")
-    val errorCode: Int,
-    @SerializedName("errorMsg")
-    val errorMsg: String,
-)
+// @Keep
+// data class BaseResponseBean(
+//     @SerializedName("data")
+//     val data: ResponseBean,
+//     @SerializedName("errorCode")
+//     val errorCode: Int,
+//     @SerializedName("errorMsg")
+//     val errorMsg: String,
+// )
 
 @Keep
-data class ResponseBean(
+data class ArticleBean(
     @SerializedName("curPage")
     val curPage: Int,
     @SerializedName("datas")
-    val datas: List<Article>,
+    val articles: List<Article>,
     @SerializedName("offset")
     val offset: Int,
     @SerializedName("over")
@@ -28,10 +28,10 @@ data class ResponseBean(
     @SerializedName("size")
     val size: Int,
     @SerializedName("total")
-    val total: Int,
+    val total: Int
 )
 
-
+// 文章
 @Keep
 data class Article(
     @SerializedName("adminAdd")
@@ -99,13 +99,14 @@ data class Article(
     @SerializedName("visible")
     val visible: Int,
     @SerializedName("zan")
-    val zan: Int,
+    val zan: Int
 )
 
+// 文章标签
 @Keep
 data class Tag(
     @SerializedName("name")
     val name: String,
     @SerializedName("url")
-    val url: String,
+    val url: String
 )

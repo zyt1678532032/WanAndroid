@@ -27,6 +27,8 @@ class HomeViewModel : ViewModel() {
         val api = retrofit.create(WanAndroidAPI::class.java)
         viewModelScope.launch {
             api.getArticles()
+            api.getBanners()
+            api.getPopularWebsite()
         }
     }
 }
