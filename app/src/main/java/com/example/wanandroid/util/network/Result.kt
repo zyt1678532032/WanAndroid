@@ -1,4 +1,4 @@
-package com.example.wanandroid.domain
+package com.example.wanandroid.util.network
 
 
 /**

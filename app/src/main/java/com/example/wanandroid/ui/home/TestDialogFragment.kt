@@ -16,9 +16,7 @@ class TestDialogFragment(@LayoutRes resId: Int) : DialogFragment(resId) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.text.observe(viewLifecycleOwner){
 
-        }
 
     }
 

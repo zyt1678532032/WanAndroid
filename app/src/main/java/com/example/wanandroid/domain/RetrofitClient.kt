@@ -1,6 +1,6 @@
 package com.example.wanandroid.domain
 
-import com.example.wanandroid.domain.calladapter.FlowCallAdapterFactory
+import com.example.wanandroid.util.network.calladapter.FlowCallAdapterFactory
 import com.google.gson.ExclusionStrategy
 import com.google.gson.FieldAttributes
 import com.google.gson.FieldNamingPolicy

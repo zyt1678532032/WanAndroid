@@ -7,28 +7,27 @@ import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.domain.RetrofitClient
 import com.example.wanandroid.domain.WanAndroidAPI
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    private val _articles: MutableLiveData<List<Article>> = MutableLiveData()
+    val articles: LiveData<List<Article>> = _articles
+
+    private val api = RetrofitClient.getRetrofitClient().create(WanAndroidAPI::class.java)
 
     init {
         getArticles()
     }
 
-    fun getArticles() {
-        val retrofit = RetrofitClient.getRetrofitClient()
-        val api = retrofit.create(WanAndroidAPI::class.java)
+    private fun getArticles() {
+
         viewModelScope.launch {
-            api.getArticles()
-            api.getBanners()
-            api.getPopularWebsite()
+            api.getArticles().collectLatest {
+                val response = it.data
+                _articles.postValue(response?.articles)
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.wanandroid.domain.calladapter
+package com.example.wanandroid.util.network.calladapter
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

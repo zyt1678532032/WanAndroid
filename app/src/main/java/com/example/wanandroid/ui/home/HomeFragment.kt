@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.compose.ui.graphics.vector.addPathNodes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -44,6 +45,9 @@ class HomeFragment : Fragment() {
         articleAdapter = ArticleAdapter()
         binding.recycleView.adapter = articleAdapter
         binding.recycleView.layoutManager = LinearLayoutManager(context)
+        homeViewModel.articles.observe(requireActivity()){
+            articleAdapter.data = it
+        }
     }
 
     override fun onDestroyView() {
