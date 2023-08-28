@@ -27,12 +27,16 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleHolder>() {
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
         holder.titleView.text = data[position].title
         holder.authorView.text = data[position].author
+        holder.rootView.setOnClickListener {
+            // TODO: 拉起Activity
+        }
     }
 
 }
 
 class ArticleHolder(binding: ArticleHolderLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
+    val rootView = binding.root
     val titleView = binding.title
     val authorView = binding.author
 }

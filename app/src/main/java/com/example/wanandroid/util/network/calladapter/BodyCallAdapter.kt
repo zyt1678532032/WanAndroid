@@ -12,6 +12,9 @@ import java.lang.reflect.Type
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+/**
+ * 响应体body的callback回调适配器
+ */
 class BodyCallAdapter<T>(private val responseType: Type) : CallAdapter<T, Flow<T>> {
     override fun adapt(call: Call<T>): Flow<T> {
         return flow {

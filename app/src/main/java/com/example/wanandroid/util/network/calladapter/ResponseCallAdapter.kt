@@ -12,6 +12,9 @@ import java.lang.reflect.Type
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+/**
+ * 响应response的callback回调适配器
+ */
 class ResponseCallAdapter<T>(
     private val responseType: Type
 ) : CallAdapter<T, Flow<Response<T>>> {

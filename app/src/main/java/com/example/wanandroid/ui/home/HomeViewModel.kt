@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.domain.RetrofitClient
-import com.example.wanandroid.domain.WanAndroidAPI
+import com.example.wanandroid.domain.WanAndroidRepository
+import com.example.wanandroid.domain.bean.Article
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -15,7 +15,7 @@ class HomeViewModel : ViewModel() {
     private val _articles: MutableLiveData<List<Article>> = MutableLiveData()
     val articles: LiveData<List<Article>> = _articles
 
-    private val api = RetrofitClient.getRetrofitClient().create(WanAndroidAPI::class.java)
+    private val api = RetrofitClient.getRetrofitClient().create(WanAndroidRepository::class.java)
 
     init {
         getArticles()
