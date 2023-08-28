@@ -22,7 +22,6 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun getArticles() {
-
         viewModelScope.launch {
             api.getArticles().collectLatest {
                 val response = it.data

@@ -3,8 +3,6 @@ package com.example.wanandroid.domain.bean
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
-
-
 @Keep
 data class ArticleBean(
     @SerializedName("curPage")
