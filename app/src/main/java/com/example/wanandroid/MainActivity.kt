@@ -1,6 +1,7 @@
 package com.example.wanandroid
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -8,7 +9,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.wanandroid.ui.home.MessageEvent
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +37,24 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+        Log.i("onStart", "-----")
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    fun customEvent(messageEvent: MessageEvent) {
+        Log.i("MainActivity", messageEvent.toString())
+    }
+
+
+    override fun onStop() {
+        EventBus.getDefault().unregister(this)
+        super.onStop()
+        Log.i("onStop", "-----")
     }
 
 

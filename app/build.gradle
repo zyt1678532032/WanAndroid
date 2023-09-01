@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -24,11 +25,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         viewBinding true
@@ -36,6 +38,12 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.2"
+    }
+}
+// eventbus 注解处理器
+kapt {
+    arguments {
+        arg('eventBusIndex', 'com.example.myapp.MyEventBusIndex')
     }
 }
 
@@ -60,8 +68,9 @@ dependencies {
     // Android Studio Preview support
     implementation 'androidx.compose.ui:ui-tooling-preview:1.4.3'
     debugImplementation 'androidx.compose.ui:ui-tooling:1.4.3'
-
+    // EventBus
     implementation 'org.greenrobot:eventbus:3.3.1'
+    kapt 'org.greenrobot:eventbus-annotation-processor:3.3.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
