@@ -1,7 +1,6 @@
 package com.example.wanandroid.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.wanandroid.MyApplication
 import com.example.wanandroid.ui.home.adapter.ArticleAdapter
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import com.example.wanandroid.util.viewModelFactory
 
 
 class HomeFragment : Fragment() {
@@ -23,7 +21,12 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val homeViewModel by activityViewModels<HomeViewModel> {
+        viewModelFactory {
+            HomeViewModel(MyApplication.appModule.repository)
+        }
+    }
+
     private lateinit var articleAdapter: ArticleAdapter
 
     override fun onCreateView(

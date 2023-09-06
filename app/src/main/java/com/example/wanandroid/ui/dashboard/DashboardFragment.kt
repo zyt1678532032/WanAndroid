@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.databinding.FragmentDashboardBinding
+import com.example.wanandroid.ui.home.MessageEvent
+import org.greenrobot.eventbus.EventBus
 
 class DashboardFragment : Fragment() {
 
@@ -31,6 +33,9 @@ class DashboardFragment : Fragment() {
         val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+        binding.textDashboard.setOnClickListener {
+            EventBus.getDefault().post(MessageEvent())
         }
         return root
     }
