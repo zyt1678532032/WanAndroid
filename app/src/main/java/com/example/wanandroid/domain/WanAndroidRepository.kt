@@ -7,4 +7,6 @@ interface WanAndroidRepository {
 
     fun getArticles(): Flow<List<Article>>
 
+    fun getTopArticles(): Flow<List<Article>>
+
 }

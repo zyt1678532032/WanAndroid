@@ -16,7 +16,7 @@ interface WanAndroidApi {
 
     // 置顶文章
     @GET("article/top/json")
-    fun getTopArticles(): Flow<List<Article>>
+    fun getTopArticles(): Flow<BaseResponse<List<Article>>>
 
     @GET("banner/json")
     fun getBanners(): Flow<BaseResponse<List<Banner>>>

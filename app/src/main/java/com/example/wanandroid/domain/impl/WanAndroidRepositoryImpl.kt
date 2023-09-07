@@ -16,4 +16,10 @@ class WanAndroidRepositoryImpl(
         }
     }
 
+    override fun getTopArticles(): Flow<List<Article>> {
+        return api.getTopArticles().transform {
+            emit(it.data ?: emptyList())
+        }
+    }
+
 }
