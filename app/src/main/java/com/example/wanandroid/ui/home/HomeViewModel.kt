@@ -13,23 +13,37 @@ class HomeViewModel(
     private val pexelsResourceRepository: PexelsResourceRepository
 ) : ViewModel() {
 
-    suspend fun getArticles(): Flow<List<Article>> {
-        // TODO: 这个perPage需要调整获取方法
-        val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
 
-        return combine(
-            wanAndroidRepository.getOriginArticles(),
-            pexelsResourceRepository.getPexelPhotos("android", perPage)
-        ) { originArticles, pexels ->
-            val articles = mutableListOf<Article>()
-            for (i in originArticles.indices) {
-                articles += Article(
-                    title = originArticles[i].title,
-                    author = originArticles[i].author,
-                    imageUrl = pexels[i].src?.original!!
-                )
+    private val _articles: MutableLiveData<List<Article>> = MutableLiveData()
+    val articles: LiveData<List<Article>> = _articles
+
+    private val _pexelPhotos: MutableLiveData<List<PexelPhoto>> = MutableLiveData()
+    val pexelPhotos: LiveData<List<PexelPhoto>> = _pexelPhotos
+
+    init {
+        getArticles()
+    }
+
+    private fun getArticles() {
+        viewModelScope.launch {
+            val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
+
+            combine(
+                wanAndroidRepository.getOriginArticles(),
+                pexelsResourceRepository.getPexelPhotos("android", perPage)
+            ) { originArticles, pexels ->
+                val articles = mutableListOf<Article>()
+                for (i in originArticles.indices) {
+                    articles += Article(
+                        title = originArticles[i].title,
+                        author = originArticles[i].author,
+                        imageUrl = pexels[i].src?.original!!
+                    )
+                }
+                articles
+            }.collectLatest {
+                _articles.postValue(it)
             }
-            articles
         }
     }
 
