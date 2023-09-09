@@ -1,12 +1,17 @@
 package com.example.wanandroid.ui.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.domain.PexelsResourceRepository
 import com.example.wanandroid.domain.WanAndroidRepository
 import com.example.wanandroid.domain.bean.Article
-import kotlinx.coroutines.flow.Flow
+import com.example.wanandroid.domain.bean.PexelPhoto
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val wanAndroidRepository: WanAndroidRepository,
