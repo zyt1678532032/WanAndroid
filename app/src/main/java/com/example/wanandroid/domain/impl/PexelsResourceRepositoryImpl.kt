@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 
 
-class PexelsResourceImpl(
+class PexelsResourceRepositoryImpl(
     private val pexelsApi: PexelsResourceApi
 ) : PexelsResourceRepository {
 

@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.wanandroid.PexelsRetrofitClient
 import com.example.wanandroid.domain.PexelsResourceApi
 import com.example.wanandroid.domain.PexelsResourceRepository
-import com.example.wanandroid.domain.impl.PexelsResourceImpl
+import com.example.wanandroid.domain.impl.PexelsResourceRepositoryImpl
 
 interface PexelsResourceModule {
     val pexelsResourceApi: PexelsResourceApi
@@ -20,6 +20,6 @@ class PexelsResourceModuleImpl(
     }
 
     override val pexelsResourceRepository: PexelsResourceRepository by lazy {
-        PexelsResourceImpl(pexelsResourceApi)
+        PexelsResourceRepositoryImpl(pexelsResourceApi)
     }
 }
