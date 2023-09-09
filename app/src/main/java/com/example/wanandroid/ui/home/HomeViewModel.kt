@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wanandroid.domain.RetrofitClient
-import com.example.wanandroid.domain.WanAndroidApi
 import com.example.wanandroid.domain.WanAndroidRepository
 import com.example.wanandroid.domain.bean.Article
 import kotlinx.coroutines.flow.collectLatest

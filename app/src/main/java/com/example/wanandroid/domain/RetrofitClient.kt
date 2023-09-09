@@ -21,3 +21,21 @@ object RetrofitClient {
         return retrofit!!
     }
 }
+
+object PexelsRetrofitClient{
+
+    private const val BASE_URL = "https://api.pexels.com/"
+    private var retrofit: Retrofit? = null
+
+    @Synchronized
+    fun getRetrofitClient(): Retrofit {
+        if (retrofit == null) {
+            retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addCallAdapterFactory(FlowCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+        return retrofit!!
+    }
+}

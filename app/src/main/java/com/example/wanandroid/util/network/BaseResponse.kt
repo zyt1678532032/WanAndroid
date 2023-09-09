@@ -4,11 +4,13 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class BaseResponse<T>(
+open class BaseResponse<T> {
     @SerializedName("data")
-    val data: T? = null,
+    val data: T? = null
+
     @SerializedName("errorCode")
-    val errorCode: Int,
+    val errorCode: Int? = null
+
     @SerializedName("errorMsg")
-    val errorMsg: String
-)
+    val errorMsg: String? = null
+}

@@ -11,6 +11,8 @@ class MyApplication : Application() {
 
     companion object {
         lateinit var appModule: AppModule
+        // 图片资源 https://www.pexels.com/api/documentation/
+        const val PEXELS_TOKEN = "I4A2jQ10vvXMK6WUxRp292waX4GSjY6e2S2qqtkJfTAZWsCGRGzKbSmv"
     }
 
     override fun onCreate() {
