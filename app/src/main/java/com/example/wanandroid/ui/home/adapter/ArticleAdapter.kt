@@ -37,7 +37,7 @@ class ArticleHolder(private val binding: ArticleHolderLayoutBinding) :
     val rootView = binding.root
 
     fun bindItemData(article: Article) {
-        binding.title.text = article.title
-        binding.author.text = article.author
+        binding.articleTitle.text = article.title
+        binding.articleAuthor.text = article.author
     }
 }

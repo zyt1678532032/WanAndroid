@@ -23,7 +23,10 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel by activityViewModels<HomeViewModel> {
         viewModelFactory {
-            HomeViewModel(MyApplication.appModule.repository)
+            HomeViewModel(
+                MyApplication.wanAndroidModule.wanAndroidRepository,
+                MyApplication.pexelsResourceModule.pexelsResourceRepository
+            )
         }
     }
 
@@ -46,6 +49,10 @@ class HomeFragment : Fragment() {
         homeViewModel.articles.observe(requireActivity()) {
             articleAdapter.data = it
         }
+        homeViewModel.pexelPhotos.observe(requireActivity()) {
+
+        }
+
     }
 
     override fun onDestroyView() {

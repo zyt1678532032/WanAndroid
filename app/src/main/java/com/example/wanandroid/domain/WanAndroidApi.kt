@@ -11,7 +11,7 @@ import retrofit2.http.GET
 interface WanAndroidApi {
 
     // 首页文章列表
-    @GET("article/list/0/json")
+    @GET("/article/list/0/json")
     fun getArticles(): Flow<BaseResponse<ArticleBean>>
 
     // 置顶文章
