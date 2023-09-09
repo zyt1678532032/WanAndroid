@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ArticleHolderLayoutBinding
 import com.example.wanandroid.domain.bean.Article
 
@@ -39,5 +40,8 @@ class ArticleHolder(private val binding: ArticleHolderLayoutBinding) :
     fun bindItemData(article: Article) {
         binding.articleTitle.text = article.title
         binding.articleAuthor.text = article.author
+        Glide.with(rootView)
+            .load(article.imageUrl)
+            .into(binding.articleImage)
     }
 }

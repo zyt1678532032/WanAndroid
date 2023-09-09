@@ -39,9 +39,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        binding.btn.setOnClickListener {
-            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-        }
     }
 
     override fun onStart() {

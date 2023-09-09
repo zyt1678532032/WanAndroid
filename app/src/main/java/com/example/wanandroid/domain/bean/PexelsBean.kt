@@ -38,7 +38,7 @@ data class PexelPhoto(
     @SerializedName("avg_color")
     val avgColor: String? = null,
     @SerializedName("src")
-    val src: List<ResourceType>? = null,
+    val src: ResourceType? = null,
     @SerializedName("liked")
     val liked: Boolean? = null,
     @SerializedName("alt")

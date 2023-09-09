@@ -49,9 +49,6 @@ class HomeFragment : Fragment() {
         homeViewModel.articles.observe(requireActivity()) {
             articleAdapter.data = it
         }
-        homeViewModel.pexelPhotos.observe(requireActivity()) {
-
-        }
 
     }
 

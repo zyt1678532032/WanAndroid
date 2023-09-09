@@ -8,7 +8,7 @@ data class ArticleBean(
     @SerializedName("curPage")
     val curPage: Int,
     @SerializedName("datas")
-    val articles: List<Article>,
+    val articles: List<OriginArticle>,
     @SerializedName("offset")
     val offset: Int,
     @SerializedName("over")
@@ -23,7 +23,7 @@ data class ArticleBean(
 
 // 文章
 @Keep
-data class Article(
+data class OriginArticle(
     @SerializedName("adminAdd")
     val adminAdd: Boolean,
     @SerializedName("apkLink")
@@ -99,4 +99,13 @@ data class Tag(
     val name: String,
     @SerializedName("url")
     val url: String
+)
+
+data class Article(
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("author")
+    val author: String,
+    @SerializedName("image_url")
+    val imageUrl: String,
 )

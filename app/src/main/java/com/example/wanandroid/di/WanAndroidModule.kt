@@ -19,7 +19,6 @@ class WanAndroidModuleImpl(
         RetrofitClient.getRetrofitClient().create(WanAndroidApi::class.java)
     }
 
-
     override val wanAndroidRepository: WanAndroidRepository by lazy {
         WanAndroidRepositoryImpl(wanAndroidApi)
     }

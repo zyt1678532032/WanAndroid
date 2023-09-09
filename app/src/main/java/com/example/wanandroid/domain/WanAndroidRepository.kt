@@ -1,12 +1,14 @@
 package com.example.wanandroid.domain
 
-import com.example.wanandroid.domain.bean.Article
+import com.example.wanandroid.domain.bean.OriginArticle
 import kotlinx.coroutines.flow.Flow
 
 interface WanAndroidRepository {
 
-    fun getArticles(): Flow<List<Article>>
+    fun getOriginArticles(): Flow<List<OriginArticle>>
 
-    fun getTopArticles(): Flow<List<Article>>
+    fun getNumOfOriginArticles(): Flow<Int>
+
+    fun getTopArticles(): Flow<List<OriginArticle>>
 
 }

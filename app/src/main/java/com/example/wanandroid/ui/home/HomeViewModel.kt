@@ -10,6 +10,8 @@ import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.domain.bean.PexelPhoto
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -29,12 +31,22 @@ class HomeViewModel(
 
     private fun getArticles() {
         viewModelScope.launch {
-            val articleFLow = wanAndroidRepository.getArticles()
-            val pexelsFlow = pexelsResourceRepository.getPexelPhotos("", 10)
-            articleFLow.combine(pexelsFlow) { articles, pexels ->
+            val originArticlesFlow = wanAndroidRepository.getOriginArticles()
+            val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
+            val pexelsFlow = pexelsResourceRepository.getPexelPhotos("android", perPage)
 
+            originArticlesFlow.combine(pexelsFlow) { originArticles, pexels ->
+                val articles = mutableListOf<Article>()
+                for (i in originArticles.indices) {
+                    articles += Article(
+                        title = originArticles[i].title,
+                        author = originArticles[i].author,
+                        imageUrl = pexels[i].src?.original!!
+                    )
+                }
+                articles
             }.collectLatest {
-
+                _articles.postValue(it)
             }
         }
     }

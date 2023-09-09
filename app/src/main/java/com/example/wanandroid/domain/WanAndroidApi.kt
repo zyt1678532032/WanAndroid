@@ -1,8 +1,8 @@
 package com.example.wanandroid.domain
 
-import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.domain.bean.ArticleBean
 import com.example.wanandroid.domain.bean.Banner
+import com.example.wanandroid.domain.bean.OriginArticle
 import com.example.wanandroid.domain.bean.PopularWebSite
 import com.example.wanandroid.util.network.BaseResponse
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +16,7 @@ interface WanAndroidApi {
 
     // 置顶文章
     @GET("article/top/json")
-    fun getTopArticles(): Flow<BaseResponse<List<Article>>>
+    fun getTopArticles(): Flow<BaseResponse<List<OriginArticle>>>
 
     @GET("banner/json")
     fun getBanners(): Flow<BaseResponse<List<Banner>>>
