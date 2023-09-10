@@ -32,13 +32,22 @@ class HomeViewModel(
     private fun getArticles() {
         viewModelScope.launch {
             val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
-
+            val topArticles = wanAndroidRepository.getTopOriginArticles().first()
             combine(
                 wanAndroidRepository.getOriginArticles(),
                 pexelsResourceRepository.getPexelPhotos("android", perPage)
             ) { originArticles, pexels ->
                 val articles = mutableListOf<Article>()
                 for (i in originArticles.indices) {
+                    if (i == 0) {
+                        articles += Article(
+                            title = topArticles.first().title,
+                            author = topArticles.first().author,
+                            imageUrl = pexels[i].src?.original!!,
+                            isTop = true
+                        )
+                        continue
+                    }
                     articles += Article(
                         title = originArticles[i].title,
                         author = originArticles[i].author,

@@ -4,11 +4,15 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication.databinding.ArticleHolderLayoutBinding
+import com.example.myapplication.databinding.TopArticleHolerLayoutBinding
 import com.example.wanandroid.domain.bean.Article
+import com.example.wanandroid.ui.home.viewholder.ArticleHolder
+import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
 
-class ArticleAdapter : RecyclerView.Adapter<ArticleHolder>() {
+class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
+
     var data: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
@@ -16,32 +20,62 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleHolder>() {
             notifyDataSetChanged()
         }
 
-    override fun getItemCount(): Int = data.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
-        val binding =
-            ArticleHolderLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleHolder(binding)
+    companion object {
+        const val TYPE_NORMAL_ARTICLE = 0
+        const val TYPE_TOP_ARTICLE = 1 // 置顶文章
     }
 
-    override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
-        holder.bindItemData(data[position])
-        holder.rootView.setOnClickListener {
-            // TODO: 拉起Activity
+    override fun getItemCount(): Int = data.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return when (viewType) {
+            TYPE_NORMAL_ARTICLE -> {
+                val binding = ArticleHolderLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                ArticleHolder(binding)
+            }
+
+            else -> {
+                val binding = TopArticleHolerLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                TopArticleHolder(binding)
+            }
         }
     }
 
-}
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when (getItemViewType(position)) {
+            TYPE_TOP_ARTICLE -> {
+                (holder as TopArticleHolder).run {
+                    bindItemData(data[position])
+                    rootView.setOnClickListener {
+                        // TODO: 拉起Activity
+                    }
+                }
+            }
 
-class ArticleHolder(private val binding: ArticleHolderLayoutBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    val rootView = binding.root
-
-    fun bindItemData(article: Article) {
-        binding.articleTitle.text = article.title
-        binding.articleAuthor.text = article.author
-        Glide.with(rootView)
-            .load(article.imageUrl)
-            .into(binding.articleImage)
+            TYPE_NORMAL_ARTICLE -> {
+                (holder as ArticleHolder).run {
+                    bindItemData(data[position])
+                    rootView.setOnClickListener {
+                        // TODO: 拉起Activity
+                    }
+                }
+            }
+        }
     }
+
+    override fun getItemViewType(position: Int): Int {
+        if (data[position].isTop) {
+            return TYPE_TOP_ARTICLE
+        }
+        return TYPE_NORMAL_ARTICLE
+    }
+
 }

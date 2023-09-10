@@ -22,7 +22,7 @@ class WanAndroidRepositoryImpl(
         }
     }
 
-    override fun getTopArticles(): Flow<List<OriginArticle>> {
+    override fun getTopOriginArticles(): Flow<List<OriginArticle>> {
         return wanAndroidApi.getTopArticles().transform {
             emit(it.data ?: emptyList())
         }
