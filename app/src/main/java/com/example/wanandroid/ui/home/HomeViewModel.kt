@@ -33,6 +33,7 @@ class HomeViewModel(
         viewModelScope.launch {
             val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
             val topArticles = wanAndroidRepository.getTopOriginArticles().first()
+
             combine(
                 wanAndroidRepository.getOriginArticles(),
                 pexelsResourceRepository.getPexelPhotos("android", perPage)
@@ -42,7 +43,7 @@ class HomeViewModel(
                     if (i == 0) {
                         articles += Article(
                             title = topArticles.first().title,
-                            author = topArticles.first().author,
+                            author = topArticles.first().author.ifEmpty { "匿名作者" },
                             imageUrl = pexels[i].src?.original!!,
                             isTop = true
                         )
@@ -50,7 +51,7 @@ class HomeViewModel(
                     }
                     articles += Article(
                         title = originArticles[i].title,
-                        author = originArticles[i].author,
+                        author = originArticles[i].author.ifEmpty { "匿名作者" },
                         imageUrl = pexels[i].src?.original!!
                     )
                 }

@@ -14,6 +14,7 @@ class ArticleHolder(private val binding: ArticleHolderLayoutBinding) :
         binding.articleAuthor.text = article.author
         Glide.with(rootView)
             .load(article.imageUrl)
+            .centerCrop()
             .into(binding.articleImage)
     }
 }
