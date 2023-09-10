@@ -1,12 +1,11 @@
 package com.example.wanandroid.ui.home.viewholder;
 
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.myapplication.databinding.TopArticleHolerLayoutBinding
+import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
 
-class TopArticleHolder(private val binding: TopArticleHolerLayoutBinding) :
+class TopArticleHolder(private val binding: ViewholderTopArticleLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
     val rootView = binding.root
 

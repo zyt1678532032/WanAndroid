@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="2.5dp"
-    android:background="@drawable/article_holder_layout_bg"
+    android:background="@drawable/viewholder_article_layout_bg"
     android:paddingHorizontal="8dp"
     android:paddingVertical="5dp">
 
@@ -20,7 +20,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/normal_article_img_radius">
+            app:cardCornerRadius="@dimen/img_normal_article_radius">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/article_image"
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/tag_article_background"
+                    android:background="@drawable/tag_article_bg"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
                     android:paddingVertical="2dp"
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/tag_article_background"
+                    android:background="@drawable/tag_article_bg"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
                     android:paddingVertical="2dp"
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/tag_article_background"
+                    android:background="@drawable/tag_article_bg"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
                     android:paddingVertical="2dp"

@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.myapplication.databinding.ArticleHolderLayoutBinding
-import com.example.myapplication.databinding.TopArticleHolerLayoutBinding
+import com.example.myapplication.databinding.ViewholderArticleLayoutBinding
+import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
@@ -30,7 +30,7 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             TYPE_NORMAL_ARTICLE -> {
-                val binding = ArticleHolderLayoutBinding.inflate(
+                val binding = ViewholderArticleLayoutBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -39,7 +39,7 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
             }
 
             else -> {
-                val binding = TopArticleHolerLayoutBinding.inflate(
+                val binding = ViewholderTopArticleLayoutBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false

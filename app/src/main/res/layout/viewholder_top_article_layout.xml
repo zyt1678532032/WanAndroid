@@ -13,7 +13,7 @@
         android:id="@+id/img_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/top_article_img_radius"
+        app:cardCornerRadius="@dimen/img_top_article_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"> <!-- 设置圆角半径 -->
