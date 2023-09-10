@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.wanandroid.MyApplication
 import com.example.wanandroid.ui.home.adapter.ArticleAdapter
 import com.example.wanandroid.util.viewModelFactory
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -50,11 +47,10 @@ class HomeFragment : Fragment() {
         binding.recycleView.adapter = articleAdapter
         binding.recycleView.layoutManager = LinearLayoutManager(context)
 
-        lifecycleScope.launch {
-            homeViewModel.getArticles().collectLatest {
-                articleAdapter.data = it
-            }
+        homeViewModel.articles.observe(viewLifecycleOwner) {
+            articleAdapter.data = it
         }
+
     }
 
     override fun onDestroyView() {

@@ -1,12 +1,17 @@
 package com.example.wanandroid.ui.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.domain.PexelsResourceRepository
 import com.example.wanandroid.domain.WanAndroidRepository
 import com.example.wanandroid.domain.bean.Article
-import kotlinx.coroutines.flow.Flow
+import com.example.wanandroid.domain.bean.PexelPhoto
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val wanAndroidRepository: WanAndroidRepository,
@@ -27,6 +32,7 @@ class HomeViewModel(
     private fun getArticles() {
         viewModelScope.launch {
             val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
+            val topArticles = wanAndroidRepository.getTopOriginArticles().first()
 
             combine(
                 wanAndroidRepository.getOriginArticles(),
@@ -34,9 +40,18 @@ class HomeViewModel(
             ) { originArticles, pexels ->
                 val articles = mutableListOf<Article>()
                 for (i in originArticles.indices) {
+                    if (i == 0) {
+                        articles += Article(
+                            title = topArticles.first().title,
+                            author = topArticles.first().author.ifEmpty { "匿名作者" },
+                            imageUrl = pexels[i].src?.original!!,
+                            isTop = true
+                        )
+                        continue
+                    }
                     articles += Article(
                         title = originArticles[i].title,
-                        author = originArticles[i].author,
+                        author = originArticles[i].author.ifEmpty { "匿名作者" },
                         imageUrl = pexels[i].src?.original!!
                     )
                 }
