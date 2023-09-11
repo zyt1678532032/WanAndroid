@@ -10,98 +10,99 @@
     android:paddingHorizontal="8dp"
     android:paddingVertical="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        app:cardCornerRadius="@dimen/img_normal_article_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/article_title"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/article_image"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/article_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingTop="2dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/article_author"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView"
+        tools:text="文章标题\n文章标题" />
+
+    <TextView
+        android:id="@+id/article_author"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tags_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/article_title"
+        app:layout_constraintTop_toBottomOf="@+id/article_title"
+        app:layout_constraintVertical_weight="1"
+        tools:text="文章作者" />
+
+    <!-- 标签栏 -->
+    <LinearLayout
+        android:id="@+id/tags_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/article_author"
+        app:layout_constraintTop_toBottomOf="@+id/article_author"
+        app:layout_constraintVertical_weight="1">
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/img_normal_article_radius">
+            android:layout_height="20dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/tag_article_bg"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp"
+            android:text="Android"
+            android:textSize="11sp" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/article_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_launcher_background"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/tag_article_bg"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp"
+            android:text="MVVM"
+            android:textSize="11sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/tag_article_bg"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp"
+            android:text="Jetpack"
+            android:textSize="11sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/article_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:maxLines="2"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="文章标题" />
-
-            <TextView
-                android:id="@+id/article_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                tools:text="文章作者" />
-
-            <!-- 标签栏 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/article_author">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/tag_article_bg"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:paddingVertical="2dp"
-                    android:text="Android"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/tag_article_bg"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:paddingVertical="2dp"
-                    android:text="MVVM"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/tag_article_bg"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:paddingVertical="2dp"
-                    android:text="Jetpack"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
