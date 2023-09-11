@@ -45,6 +45,7 @@ class HomeViewModel(
                             title = topArticles.first().title,
                             author = topArticles.first().author.ifEmpty { "匿名作者" },
                             imageUrl = pexels[i].src?.original!!,
+                            link = topArticles.first().link,
                             isTop = true
                         )
                         continue
@@ -52,7 +53,9 @@ class HomeViewModel(
                     articles += Article(
                         title = originArticles[i].title,
                         author = originArticles[i].author.ifEmpty { "匿名作者" },
-                        imageUrl = pexels[i].src?.original!!
+                        imageUrl = pexels[i].src?.original!!,
+                        link = originArticles[i].link,
+                        isTop = false
                     )
                 }
                 articles

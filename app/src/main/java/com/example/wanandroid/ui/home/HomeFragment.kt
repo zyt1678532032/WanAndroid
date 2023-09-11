@@ -1,5 +1,6 @@
 package com.example.wanandroid.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.wanandroid.MyApplication
+import com.example.wanandroid.ui.ArticleDetailActivity
 import com.example.wanandroid.ui.home.adapter.ArticleAdapter
 import com.example.wanandroid.util.viewModelFactory
 
@@ -44,6 +46,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         articleAdapter = ArticleAdapter()
+        articleAdapter.itemClickListener = { article ->
+            val activity = requireActivity()
+
+            val intent = Intent(activity, ArticleDetailActivity::class.java)
+            intent.putExtra("link", article.link)
+            activity.startActivity(intent)
+        }
         binding.recycleView.adapter = articleAdapter
         binding.recycleView.layoutManager = LinearLayoutManager(context)
 

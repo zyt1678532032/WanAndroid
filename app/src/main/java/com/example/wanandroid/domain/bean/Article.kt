@@ -108,5 +108,7 @@ data class Article(
     val author: String,
     @SerializedName("image_url")
     val imageUrl: String,
+    @SerializedName("link")
+    val link: String,
     val isTop: Boolean = false // 是否为置顶文章
 )
