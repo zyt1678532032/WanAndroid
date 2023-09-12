@@ -31,30 +31,48 @@ class HomeViewModel(
 
     private fun getArticles() {
         viewModelScope.launch {
-            val perPage = wanAndroidRepository.getNumOfOriginArticles().first()
-            val topArticles = wanAndroidRepository.getTopOriginArticles().first()
+            val normalArticlesSize = wanAndroidRepository.getOriginArticles().first().size
+            val topArticlesSize = wanAndroidRepository.getTopOriginArticles().first().size
 
             combine(
                 wanAndroidRepository.getOriginArticles(),
-                pexelsResourceRepository.getPexelPhotos("android", perPage)
-            ) { originArticles, pexels ->
+                wanAndroidRepository.getTopOriginArticles(),
+                pexelsResourceRepository.getPexelPhotos("android", normalArticlesSize + topArticlesSize)
+            ) { normalArticles, topArticles, pexels ->
+
                 val articles = mutableListOf<Article>()
-                for (i in originArticles.indices) {
+                var indexForNormalArticle = topArticles.size
+                for (i in normalArticles.indices) {
                     if (i == 0) {
+                        val _topArticles = mutableListOf<Article>()
+                        for (j in topArticles.indices) {
+                            _topArticles += Article(
+                                title = topArticles[j].title,
+                                author = topArticles[j].author.ifEmpty { "匿名作者" },
+                                imageUrl = pexels[j].src?.original!!,
+                                link = topArticles[j].link,
+                            )
+                        }
                         articles += Article(
-                            title = topArticles.first().title,
-                            author = topArticles.first().author.ifEmpty { "匿名作者" },
-                            imageUrl = pexels[i].src?.original!!,
-                            isTop = true
+                            title = "",
+                            author = "",
+                            imageUrl = "",
+                            link = pexels[i].src?.original!!,
+                            isTop = true,
+                            topArticles = _topArticles
                         )
                         continue
                     }
                     articles += Article(
-                        title = originArticles[i].title,
-                        author = originArticles[i].author.ifEmpty { "匿名作者" },
-                        imageUrl = pexels[i].src?.original!!
+                        title = normalArticles[i].title,
+                        author = normalArticles[i].author.ifEmpty { "匿名作者" },
+                        imageUrl = pexels[indexForNormalArticle++].src?.original!!,
+                        link = normalArticles[i].link,
+                        isTop = false
                     )
                 }
+
+
                 articles
             }.collectLatest {
                 _articles.postValue(it)

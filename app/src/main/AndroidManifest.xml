@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.wanandroid.ui.SecondActivity" />
+        <activity android:name="com.example.wanandroid.ui.ArticleDetailActivity" />
     </application>
 
 </manifest>

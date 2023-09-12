@@ -2,6 +2,7 @@ package com.example.wanandroid.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -10,6 +11,7 @@ import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
+import java.lang.IllegalStateException
 
 class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
 
@@ -19,6 +21,8 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
+
+    lateinit var itemClickListener: (Article) -> Unit
 
     companion object {
         const val TYPE_NORMAL_ARTICLE = 0
@@ -50,22 +54,21 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val clickListener = { _: View ->
+            itemClickListener.invoke(data[position])
+        }
         when (getItemViewType(position)) {
             TYPE_TOP_ARTICLE -> {
                 (holder as TopArticleHolder).run {
-                    bindItemData(data[position])
-                    rootView.setOnClickListener {
-                        // TODO: 拉起Activity
-                    }
+                    bindItemData(data[position].topArticles)
+                    rootView.setOnClickListener(clickListener)
                 }
             }
 
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
                     bindItemData(data[position])
-                    rootView.setOnClickListener {
-                        // TODO: 拉起Activity
-                    }
+                    rootView.setOnClickListener(clickListener)
                 }
             }
         }
