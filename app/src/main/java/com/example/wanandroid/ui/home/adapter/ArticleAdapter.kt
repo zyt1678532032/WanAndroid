@@ -60,7 +60,7 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
         when (getItemViewType(position)) {
             TYPE_TOP_ARTICLE -> {
                 (holder as TopArticleHolder).run {
-                    bindItemData(data[position])
+                    bindItemData(data[position].topArticles)
                     rootView.setOnClickListener(clickListener)
                 }
             }

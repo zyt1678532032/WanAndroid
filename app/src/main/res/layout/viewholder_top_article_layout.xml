@@ -5,44 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="2.5dp"
-    android:background="@color/white"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="10dp">
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/img_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/img_top_article_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"> <!-- 设置圆角半径 -->
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/article_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_launcher_background" />
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/article_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:maxLines="2"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_container"
-        tools:text="文章标题" />
-
-    <TextView
-        android:id="@+id/article_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="@+id/article_title"
-        app:layout_constraintTop_toBottomOf="@+id/article_title"
-        tools:text="文章作者" />
 </androidx.constraintlayout.widget.ConstraintLayout>

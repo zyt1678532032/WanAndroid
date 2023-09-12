@@ -110,5 +110,6 @@ data class Article(
     val imageUrl: String,
     @SerializedName("link")
     val link: String,
-    val isTop: Boolean = false // 是否为置顶文章
+    val isTop: Boolean = false, // 是否为置顶文章
+    val topArticles: List<Article> = emptyList()
 )
