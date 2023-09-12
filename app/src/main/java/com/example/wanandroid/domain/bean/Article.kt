@@ -102,14 +102,9 @@ data class Tag(
 )
 
 data class Article(
-    @SerializedName("title")
     val title: String,
-    @SerializedName("author")
     val author: String,
-    @SerializedName("image_url")
     val imageUrl: String,
-    @SerializedName("link")
     val link: String,
-    val isTop: Boolean = false, // 是否为置顶文章
-    val topArticles: List<Article> = emptyList()
+    val isTop: Boolean = false // 是否为置顶文章
 )

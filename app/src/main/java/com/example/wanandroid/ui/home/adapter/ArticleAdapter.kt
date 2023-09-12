@@ -2,7 +2,6 @@ package com.example.wanandroid.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -11,7 +10,6 @@ import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
-import java.lang.IllegalStateException
 
 class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
 
@@ -48,34 +46,33 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
                     parent,
                     false
                 )
-                TopArticleHolder(binding)
+                TopArticleHolder(binding = binding, topArticleItemCallback = itemClickListener)
             }
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val clickListener = { _: View ->
-            itemClickListener.invoke(data[position])
-        }
         when (getItemViewType(position)) {
             TYPE_TOP_ARTICLE -> {
                 (holder as TopArticleHolder).run {
-                    bindItemData(data[position].topArticles)
-                    rootView.setOnClickListener(clickListener)
+                    val topArticles = data.filter { it.isTop }
+                    bindItemData(topArticles)
                 }
             }
 
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
                     bindItemData(data[position])
-                    rootView.setOnClickListener(clickListener)
+                    rootView.setOnClickListener {
+                        itemClickListener.invoke(data[position])
+                    }
                 }
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (data[position].isTop) {
+        if (position == 0) { // 第一行为置顶文章
             return TYPE_TOP_ARTICLE
         }
         return TYPE_NORMAL_ARTICLE

@@ -10,13 +10,17 @@ import com.example.myapplication.databinding.ViewholderTopArticleInnerItemLayout
 import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
 
-class TopArticleHolder(private val binding: ViewholderTopArticleLayoutBinding) :
+class TopArticleHolder(
+    private val binding: ViewholderTopArticleLayoutBinding,
+    private var topArticleItemCallback: ((Article) -> Unit)? = null
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     val rootView = binding.root
 
+
     fun bindItemData(articles: List<Article>) {
-        val adapter = TopArticleItemAdapter()
+        val adapter = TopArticleItemAdapter(topArticleItemCallback)
         adapter.topArticleItems = articles
         binding.recycleView.adapter = adapter
         binding.recycleView.layoutManager = LinearLayoutManager(rootView.context).apply {
@@ -28,20 +32,24 @@ class TopArticleHolder(private val binding: ViewholderTopArticleLayoutBinding) :
 internal class TopArticleItemHolder(private val binding: ViewholderTopArticleInnerItemLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    val rootView = binding.root
+    val rootViewOfTopItem = binding.root
 
     fun bindItemData(article: Article) {
         binding.articleTitle.text = article.title
         binding.articleAuthor.text = article.author
-        Glide.with(rootView)
+        Glide.with(rootViewOfTopItem)
             .load(article.imageUrl)
             .centerCrop() // 居中裁剪图像
             .into(binding.articleImage)
+        rootViewOfTopItem.context
     }
 
 }
 
-internal class TopArticleItemAdapter : RecyclerView.Adapter<TopArticleItemHolder>() {
+internal class TopArticleItemAdapter(
+    private val topArticleItemCallback: ((topArticle: Article) -> Unit)? = null
+) :
+    RecyclerView.Adapter<TopArticleItemHolder>() {
 
     var topArticleItems: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -64,6 +72,9 @@ internal class TopArticleItemAdapter : RecyclerView.Adapter<TopArticleItemHolder
 
     override fun onBindViewHolder(holder: TopArticleItemHolder, position: Int) {
         holder.bindItemData(topArticleItems[position])
+        holder.rootViewOfTopItem.setOnClickListener {
+            topArticleItemCallback?.invoke(topArticleItems[position])
+        }
     }
 
 }
