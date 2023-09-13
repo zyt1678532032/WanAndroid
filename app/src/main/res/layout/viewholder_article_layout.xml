@@ -105,4 +105,18 @@
             android:textSize="11sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_delete"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:textColor="@color/black"
+        android:background="@color/delete_bg"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
+        app:layout_constraintStart_toEndOf="parent"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/cardView"
+        android:text="删除"
+        tools:text="删除" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

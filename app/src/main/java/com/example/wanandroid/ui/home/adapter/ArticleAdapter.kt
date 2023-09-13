@@ -13,7 +13,7 @@ import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
 
 class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
 
-    var data: List<Article> = emptyList()
+    var articles: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -27,7 +27,7 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
         const val TYPE_TOP_ARTICLE = 1 // 置顶文章
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = articles.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
@@ -55,17 +55,17 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
         when (getItemViewType(position)) {
             TYPE_TOP_ARTICLE -> {
                 (holder as TopArticleHolder).run {
-                    val topArticles = data.filter { it.isTop }
+                    val topArticles = articles.filter { it.isTop }
                     bindItemData(topArticles)
                 }
             }
 
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
-                    bindItemData(data[position])
-                    rootView.setOnClickListener {
-                        itemClickListener.invoke(data[position])
-                    }
+                    bindItemData(articles[position])
+                    // rootView.setOnClickListener {
+                    //     itemClickListener.invoke(articles[position])
+                    // }
                 }
             }
         }
@@ -76,6 +76,13 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
             return TYPE_TOP_ARTICLE
         }
         return TYPE_NORMAL_ARTICLE
+    }
+
+    fun removeArticleItem(position: Int) {
+        val removeArticle = articles[position]
+        val index = articles.indexOf(removeArticle)
+        articles = articles.filter { it != removeArticle }
+        notifyItemChanged(index)
     }
 
 }

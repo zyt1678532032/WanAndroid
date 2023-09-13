@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         binding.recycleView.layoutManager = LinearLayoutManager(context)
 
         homeViewModel.articles.observe(viewLifecycleOwner) {
-            articleAdapter.data = it
+            articleAdapter.articles = it
         }
 
     }

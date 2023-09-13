@@ -13,24 +13,21 @@ import com.example.wanandroid.domain.bean.Article
 class TopArticleHolder(
     private val binding: ViewholderTopArticleLayoutBinding,
     private var topArticleItemCallback: ((Article) -> Unit)? = null
-) :
-    RecyclerView.ViewHolder(binding.root) {
-
-    val rootView = binding.root
-
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindItemData(articles: List<Article>) {
         val adapter = TopArticleItemAdapter(topArticleItemCallback)
         adapter.topArticleItems = articles
         binding.recycleView.adapter = adapter
-        binding.recycleView.layoutManager = LinearLayoutManager(rootView.context).apply {
+        binding.recycleView.layoutManager = LinearLayoutManager(binding.root.context).apply {
             orientation = LinearLayoutManager.HORIZONTAL
         }
     }
 }
 
-internal class TopArticleItemHolder(private val binding: ViewholderTopArticleInnerItemLayoutBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+internal class TopArticleItemHolder(
+    private val binding: ViewholderTopArticleInnerItemLayoutBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     val rootViewOfTopItem = binding.root
 
@@ -48,8 +45,7 @@ internal class TopArticleItemHolder(private val binding: ViewholderTopArticleInn
 
 internal class TopArticleItemAdapter(
     private val topArticleItemCallback: ((topArticle: Article) -> Unit)? = null
-) :
-    RecyclerView.Adapter<TopArticleItemHolder>() {
+) : RecyclerView.Adapter<TopArticleItemHolder>() {
 
     var topArticleItems: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
