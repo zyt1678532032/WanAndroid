@@ -25,24 +25,6 @@ class TopArticleHolder(
     }
 }
 
-internal class TopArticleItemHolder(
-    private val binding: ViewholderTopArticleInnerItemLayoutBinding
-) : RecyclerView.ViewHolder(binding.root) {
-
-    val rootViewOfTopItem = binding.root
-
-    fun bindItemData(article: Article) {
-        binding.articleTitle.text = article.title
-        binding.articleAuthor.text = article.author
-        Glide.with(rootViewOfTopItem)
-            .load(article.imageUrl)
-            .centerCrop() // 居中裁剪图像
-            .into(binding.articleImage)
-        rootViewOfTopItem.context
-    }
-
-}
-
 internal class TopArticleItemAdapter(
     private val topArticleItemCallback: ((topArticle: Article) -> Unit)? = null
 ) : RecyclerView.Adapter<TopArticleItemHolder>() {
@@ -67,10 +49,31 @@ internal class TopArticleItemAdapter(
     override fun getItemCount(): Int = topArticleItems.size
 
     override fun onBindViewHolder(holder: TopArticleItemHolder, position: Int) {
-        holder.bindItemData(topArticleItems[position])
+        holder.bindItemData(topArticleItems, position)
         holder.rootViewOfTopItem.setOnClickListener {
             topArticleItemCallback?.invoke(topArticleItems[position])
         }
+    }
+
+}
+
+internal class TopArticleItemHolder(
+    private val binding: ViewholderTopArticleInnerItemLayoutBinding
+) : RecyclerView.ViewHolder(binding.root) {
+
+    val rootViewOfTopItem = binding.root
+
+    fun bindItemData(articles: List<Article>, position: Int) {
+        if (position == articles.size - 1) {
+            (rootViewOfTopItem.layoutParams as ViewGroup.MarginLayoutParams).marginEnd = 0
+        }
+        val article = articles[position]
+        binding.articleTitle.text = article.title
+        binding.articleAuthor.text = article.author
+        Glide.with(rootViewOfTopItem)
+            .load(article.imageUrl)
+            .centerCrop() // 居中裁剪图像
+            .into(binding.articleImage)
     }
 
 }
