@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication.databinding.ViewholderArticleLayoutBinding
 import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
+import com.example.wanandroid.ui.home.view.SlidingMenu
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
 
 class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
+
+    private var mOpenMenu: SlidingMenu? = null
+    var mScrollingMenu: SlidingMenu? = null
 
     var articles: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -63,9 +67,9 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
                     bindItemData(articles[position])
-                    // rootView.setOnClickListener {
-                    //     itemClickListener.invoke(articles[position])
-                    // }
+                    rootView.setOnClickListener {
+                        itemClickListener.invoke(articles[position])
+                    }
                 }
             }
         }
@@ -83,6 +87,23 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
         val index = articles.indexOf(removeArticle)
         articles = articles.filter { it != removeArticle }
         notifyItemChanged(index)
+    }
+
+    fun closeOpenMenu() {
+        if (mOpenMenu != null && mOpenMenu!!.isOpen) {
+            mOpenMenu?.closeMenu()
+            mOpenMenu = null
+        }
+    }
+
+    fun holdOpenMenu(slidingMenu: SlidingMenu) {
+        mOpenMenu = slidingMenu
+    }
+
+    fun getScrollingMenu() = mScrollingMenu
+
+    fun setScrollingMenu(slidingMenu: SlidingMenu?) {
+        mScrollingMenu = slidingMenu
     }
 
 }

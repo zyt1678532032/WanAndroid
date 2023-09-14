@@ -1,122 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.wanandroid.ui.home.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="2.5dp"
-    android:background="@drawable/viewholder_article_layout_bg"
-    android:paddingHorizontal="8dp"
-    android:paddingVertical="5dp">
+    android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/img_normal_article_radius"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/article_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/article_image"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/article_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:paddingTop="2dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/article_author"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="@+id/cardView"
-        tools:text="文章标题\n文章标题" />
-
-    <TextView
-        android:id="@+id/article_author"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tags_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/article_title"
-        app:layout_constraintTop_toBottomOf="@+id/article_title"
-        app:layout_constraintVertical_weight="1"
-        tools:text="文章作者" />
-
-    <!-- 标签栏 -->
     <LinearLayout
-        android:id="@+id/tags_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="bottom"
-        android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/article_author"
-        app:layout_constraintTop_toBottomOf="@+id/article_author"
-        app:layout_constraintVertical_weight="1">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/tag_article_bg"
-            android:gravity="center"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="2dp"
-            android:text="Android"
-            android:textSize="11sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:background="@drawable/tag_article_bg"
-            android:gravity="center"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="2dp"
-            android:text="MVVM"
-            android:textSize="11sp" />
+            android:layout_marginVertical="2.5dp"
+            android:background="@drawable/viewholder_article_layout_bg"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/img_normal_article_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/article_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/article_image"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingTop="2dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/article_author"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                tools:text="文章标题\n文章标题" />
+
+            <TextView
+                android:id="@+id/article_author"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toTopOf="@+id/tags_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/article_title"
+                app:layout_constraintTop_toBottomOf="@+id/article_title"
+                app:layout_constraintVertical_weight="1"
+                tools:text="文章作者" />
+
+            <!-- 标签栏 -->
+            <LinearLayout
+                android:id="@+id/tags_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingBottom="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/article_author"
+                app:layout_constraintTop_toBottomOf="@+id/article_author"
+                app:layout_constraintVertical_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/tag_article_bg"
+                    android:gravity="center"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:text="Android"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/tag_article_bg"
+                    android:gravity="center"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:text="MVVM"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/tag_article_bg"
+                    android:gravity="center"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:text="Jetpack"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 滑动显示内容 -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginHorizontal="5dp"
-            android:background="@drawable/tag_article_bg"
+            android:id="@+id/menuText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/teal_200"
             android:gravity="center"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="2dp"
-            android:text="Jetpack"
-            android:textSize="11sp" />
-
+            android:text="置顶"
+            android:textColor="#fff" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_delete"
-        android:layout_width="70dp"
-        android:layout_height="0dp"
-        android:textColor="@color/black"
-        android:background="@color/delete_bg"
-        app:layout_constraintBottom_toBottomOf="@id/cardView"
-        app:layout_constraintStart_toEndOf="parent"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="@id/cardView"
-        android:text="删除"
-        tools:text="删除" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.example.wanandroid.ui.home.view.SlidingMenu>

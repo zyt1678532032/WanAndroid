@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.wanandroid.MyApplication
 import com.example.wanandroid.ui.ArticleDetailActivity
@@ -53,8 +54,16 @@ class HomeFragment : Fragment() {
             intent.putExtra("link", article.link)
             activity.startActivity(intent)
         }
-        binding.recycleView.adapter = articleAdapter
-        binding.recycleView.layoutManager = LinearLayoutManager(context)
+        binding.recycleView.run {
+            adapter = articleAdapter
+            layoutManager = LinearLayoutManager(context)
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    articleAdapter.setScrollingMenu(null)
+                }
+            })
+        }
 
         homeViewModel.articles.observe(viewLifecycleOwner) {
             articleAdapter.articles = it

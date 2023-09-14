@@ -8,7 +8,6 @@ import com.example.wanandroid.domain.bean.Article
 class ArticleHolder(private val binding: ViewholderArticleLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
     val rootView = binding.root
-    val hiddenView = binding.textDelete
 
     fun bindItemData(article: Article) {
         binding.articleTitle.text = article.title
