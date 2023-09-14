@@ -143,14 +143,12 @@ public class SlidingMenu extends HorizontalScrollView {
 
     private CustomOnClickListener mCustomOnClickListener;
 
-    void setCustomOnClickListener(CustomOnClickListener listener) {
+    public void setContentClickListener(CustomOnClickListener listener) {
         this.mCustomOnClickListener = listener;
     }
 
-    interface CustomOnClickListener {
+    public interface CustomOnClickListener {
         void onClick();
     }
 
 }
-
-

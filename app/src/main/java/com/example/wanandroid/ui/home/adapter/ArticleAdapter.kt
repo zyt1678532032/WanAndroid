@@ -12,10 +12,13 @@ import com.example.wanandroid.ui.home.view.SlidingMenu
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
 
-class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
+class ArticleAdapter(
+    private val itemClickListener: (Article) -> Unit,
+    private val menuItemClickListener: () -> Unit
+) : RecyclerView.Adapter<ViewHolder>() {
 
     private var mOpenMenu: SlidingMenu? = null
-    var mScrollingMenu: SlidingMenu? = null
+    private var mScrollingMenu: SlidingMenu? = null
 
     var articles: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -23,8 +26,6 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
-
-    lateinit var itemClickListener: (Article) -> Unit
 
     companion object {
         const val TYPE_NORMAL_ARTICLE = 0
@@ -67,8 +68,12 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
                     bindItemData(articles[position])
-                    rootView.setOnClickListener {
+                    rootView.setContentClickListener {
                         itemClickListener.invoke(articles[position])
+                    }
+                    menuView.setOnClickListener {
+                        menuItemClickListener.invoke()
+                        mOpenMenu?.smoothScrollTo(0, 0) // 组件恢复原位
                     }
                 }
             }
@@ -99,6 +104,8 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
     fun holdOpenMenu(slidingMenu: SlidingMenu) {
         mOpenMenu = slidingMenu
     }
+
+    fun getOpenMenu(): SlidingMenu? = mOpenMenu
 
     fun getScrollingMenu() = mScrollingMenu
 
