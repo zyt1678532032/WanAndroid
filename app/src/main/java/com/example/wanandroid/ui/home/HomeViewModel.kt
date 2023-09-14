@@ -18,7 +18,6 @@ class HomeViewModel(
     private val pexelsResourceRepository: PexelsResourceRepository
 ) : ViewModel() {
 
-
     private val _articles: MutableLiveData<List<Article>> = MutableLiveData()
     val articles: LiveData<List<Article>> = _articles
 
@@ -44,23 +43,15 @@ class HomeViewModel(
                 var indexForNormalArticle = topArticles.size
                 for (i in normalArticles.indices) {
                     if (i == 0) {
-                        val _topArticles = mutableListOf<Article>()
                         for (j in topArticles.indices) {
-                            _topArticles += Article(
+                            articles += Article(
                                 title = topArticles[j].title,
                                 author = topArticles[j].author.ifEmpty { "匿名作者" },
                                 imageUrl = pexels[j].src?.original!!,
                                 link = topArticles[j].link,
+                                isTop = true
                             )
                         }
-                        articles += Article(
-                            title = "",
-                            author = "",
-                            imageUrl = "",
-                            link = pexels[i].src?.original!!,
-                            isTop = true,
-                            topArticles = _topArticles
-                        )
                         continue
                     }
                     articles += Article(
@@ -71,8 +62,6 @@ class HomeViewModel(
                         isTop = false
                     )
                 }
-
-
                 articles
             }.collectLatest {
                 _articles.postValue(it)

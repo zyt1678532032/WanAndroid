@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.wanandroid.MyApplication
 import com.example.wanandroid.ui.ArticleDetailActivity
@@ -45,19 +47,32 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        articleAdapter = ArticleAdapter()
-        articleAdapter.itemClickListener = { article ->
-            val activity = requireActivity()
+        articleAdapter = ArticleAdapter(
+            itemClickListener = { article ->
+                val activity = requireActivity()
 
-            val intent = Intent(activity, ArticleDetailActivity::class.java)
-            intent.putExtra("link", article.link)
-            activity.startActivity(intent)
+                val intent = Intent(activity, ArticleDetailActivity::class.java)
+                intent.putExtra("link", article.link)
+                activity.startActivity(intent)
+            },
+            menuItemClickListener = {
+                Toast.makeText(this@HomeFragment.context, "已收藏", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        binding.recycleView.run {
+            adapter = articleAdapter
+            layoutManager = LinearLayoutManager(context)
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    articleAdapter.setScrollingMenu(null)
+                }
+            })
         }
-        binding.recycleView.adapter = articleAdapter
-        binding.recycleView.layoutManager = LinearLayoutManager(context)
 
         homeViewModel.articles.observe(viewLifecycleOwner) {
-            articleAdapter.data = it
+            articleAdapter.articles = it
         }
 
     }

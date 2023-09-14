@@ -2,34 +2,37 @@ package com.example.wanandroid.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication.databinding.ViewholderArticleLayoutBinding
 import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
+import com.example.wanandroid.ui.home.view.SlidingMenu
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
-import java.lang.IllegalStateException
 
-class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
+class ArticleAdapter(
+    private val itemClickListener: (Article) -> Unit,
+    private val menuItemClickListener: () -> Unit
+) : RecyclerView.Adapter<ViewHolder>() {
 
-    var data: List<Article> = emptyList()
+    private var mOpenMenu: SlidingMenu? = null
+    private var mScrollingMenu: SlidingMenu? = null
+
+    var articles: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    lateinit var itemClickListener: (Article) -> Unit
-
     companion object {
         const val TYPE_NORMAL_ARTICLE = 0
         const val TYPE_TOP_ARTICLE = 1 // 置顶文章
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = articles.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
@@ -48,37 +51,66 @@ class ArticleAdapter : RecyclerView.Adapter<ViewHolder>() {
                     parent,
                     false
                 )
-                TopArticleHolder(binding)
+                TopArticleHolder(binding = binding, topArticleItemCallback = itemClickListener)
             }
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val clickListener = { _: View ->
-            itemClickListener.invoke(data[position])
-        }
         when (getItemViewType(position)) {
             TYPE_TOP_ARTICLE -> {
                 (holder as TopArticleHolder).run {
-                    bindItemData(data[position].topArticles)
-                    rootView.setOnClickListener(clickListener)
+                    val topArticles = articles.filter { it.isTop }
+                    bindItemData(topArticles)
                 }
             }
 
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
-                    bindItemData(data[position])
-                    rootView.setOnClickListener(clickListener)
+                    bindItemData(articles[position])
+                    rootView.setContentClickListener {
+                        itemClickListener.invoke(articles[position])
+                    }
+                    menuView.setOnClickListener {
+                        menuItemClickListener.invoke()
+                        mOpenMenu?.smoothScrollTo(0, 0) // 组件恢复原位
+                    }
                 }
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (data[position].isTop) {
+        if (position == 0) { // 第一行为置顶文章
             return TYPE_TOP_ARTICLE
         }
         return TYPE_NORMAL_ARTICLE
+    }
+
+    fun removeArticleItem(position: Int) {
+        val removeArticle = articles[position]
+        val index = articles.indexOf(removeArticle)
+        articles = articles.filter { it != removeArticle }
+        notifyItemChanged(index)
+    }
+
+    fun closeOpenMenu() {
+        if (mOpenMenu != null && mOpenMenu!!.isOpen) {
+            mOpenMenu?.closeMenu()
+            mOpenMenu = null
+        }
+    }
+
+    fun holdOpenMenu(slidingMenu: SlidingMenu) {
+        mOpenMenu = slidingMenu
+    }
+
+    fun getOpenMenu(): SlidingMenu? = mOpenMenu
+
+    fun getScrollingMenu() = mScrollingMenu
+
+    fun setScrollingMenu(slidingMenu: SlidingMenu?) {
+        mScrollingMenu = slidingMenu
     }
 
 }
