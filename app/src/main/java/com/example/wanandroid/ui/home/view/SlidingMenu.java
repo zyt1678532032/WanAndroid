@@ -29,7 +29,7 @@ public class SlidingMenu extends HorizontalScrollView {
 
     public SlidingMenu(final Context context, AttributeSet attrs) {
         super(context, attrs);
-        // 减去外边距 marginHorizontal
+        // 减去外边距 marginHorizontal; 左右两边5dp
         mScreenWidth = ScreenUtil.getScreenWidth(context) - UiUtils.dp2px(context,10);
         mMenuWidth = (int) (mScreenWidth * radio);
         setOverScrollMode(View.OVER_SCROLL_NEVER);

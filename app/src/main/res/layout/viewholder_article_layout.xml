@@ -10,7 +10,7 @@
         <!-- 主体内容 -->
         <include
             android:id="@+id/included"
-            layout="@layout/viewholder_merge_article_layout" />
+            layout="@layout/viewholder_included_article_layout" />
 
         <!-- 滑动显示内容 -->
         <TextView
