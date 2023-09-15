@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="img_top_article_radius">10dp</dimen>
     <dimen name="img_normal_article_radius">5dp</dimen>
+    <dimen name="holder_article_marginTop">2.5dp</dimen>
+
 </resources>

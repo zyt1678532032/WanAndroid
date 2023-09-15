@@ -11,11 +11,11 @@ class ArticleHolder(private val binding: ViewholderArticleLayoutBinding) :
     val menuView = binding.menuText
 
     fun bindItemData(article: Article) {
-        binding.articleTitle.text = article.title
-        binding.articleAuthor.text = article.author
+        binding.included.articleTitle.text = article.title
+        binding.included.articleAuthor.text = article.author
         Glide.with(rootView)
             .load(article.imageUrl)
             .centerCrop()
-            .into(binding.articleImage)
+            .into(binding.included.articleImage)
     }
 }

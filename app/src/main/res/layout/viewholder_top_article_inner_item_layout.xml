@@ -28,11 +28,11 @@
 
     <TextView
         android:id="@+id/article_title"
+        style="@style/text_article_title_style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:maxLines="2"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/article_author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +41,7 @@
 
     <TextView
         android:id="@+id/article_author"
+        style="@style/text_article_author_style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
