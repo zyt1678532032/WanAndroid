@@ -6,4 +6,5 @@
     <dimen name="img_normal_article_radius">5dp</dimen>
     <dimen name="holder_article_marginTop">2.5dp</dimen>
     <dimen name="holder_article_horizontal">5dp</dimen>
+    <dimen name="shape_medium">4dp</dimen>
 </resources>

@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         // 注册Eventbus
         EventBus.getDefault().register(this)
         // 布局检测插件
-        Pluto.open(PlutoLayoutInspectorPlugin.ID)
+        // Pluto.open(PlutoLayoutInspectorPlugin.ID)
 
         val navView: BottomNavigationView = binding.navView
 
