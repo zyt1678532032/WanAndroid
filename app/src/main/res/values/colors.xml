@@ -4,8 +4,10 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#DF726A</color>
+    <color name="teal_300">#EDD0CE</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black_100">#0C0C0C</color>
     <color name="white">#FFFFFFFF</color>
     <color name="fragment_bg">#EFECEC</color>
     <color name="delete_bg">#DD5757</color>

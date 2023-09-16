@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wanandroid.ui.home.adapter.ArticleAdapter;
 import com.example.wanandroid.util.ScreenUtil;
+import com.example.wanandroid.util.UiUtils;
 
 public class SlidingMenu extends HorizontalScrollView {
 
@@ -28,7 +29,8 @@ public class SlidingMenu extends HorizontalScrollView {
 
     public SlidingMenu(final Context context, AttributeSet attrs) {
         super(context, attrs);
-        mScreenWidth = ScreenUtil.getScreenWidth(context);
+        // 减去外边距 marginHorizontal; 左右两边5dp
+        mScreenWidth = ScreenUtil.getScreenWidth(context) - UiUtils.dp2px(context,10);
         mMenuWidth = (int) (mScreenWidth * radio);
         setOverScrollMode(View.OVER_SCROLL_NEVER);
         setHorizontalScrollBarEnabled(false);
