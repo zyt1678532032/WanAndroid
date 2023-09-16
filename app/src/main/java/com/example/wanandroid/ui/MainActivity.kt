@@ -1,6 +1,5 @@
 package com.example.wanandroid.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,8 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainLayoutBinding
 import com.example.wanandroid.ui.home.MessageEvent
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pluto.Pluto
+import com.pluto.plugins.layoutinspector.PlutoLayoutInspectorPlugin
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         // 注册Eventbus
         EventBus.getDefault().register(this)
+        // 布局检测插件
+        Pluto.open(PlutoLayoutInspectorPlugin.ID)
 
         val navView: BottomNavigationView = binding.navView
 
