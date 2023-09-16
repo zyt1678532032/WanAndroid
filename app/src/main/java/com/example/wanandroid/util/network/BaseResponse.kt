@@ -6,11 +6,14 @@ import com.google.gson.annotations.SerializedName
 @Keep
 open class BaseResponse<T> {
     @SerializedName("data")
-    val data: T? = null
+    var data: T? = null
 
     @SerializedName("errorCode")
     val errorCode: Int? = null
 
     @SerializedName("errorMsg")
     val errorMsg: String? = null
+
+    var status: RequestStatus? = null
+
 }

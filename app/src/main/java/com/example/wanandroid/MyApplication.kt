@@ -6,6 +6,8 @@ import com.example.wanandroid.di.PexelsResourceModule
 import com.example.wanandroid.di.PexelsResourceModuleImpl
 import com.example.wanandroid.di.WanAndroidModule
 import com.example.wanandroid.di.WanAndroidModuleImpl
+import com.pluto.Pluto
+import com.pluto.plugins.layoutinspector.PlutoLayoutInspectorPlugin
 import org.greenrobot.eventbus.EventBus
 
 
@@ -24,5 +26,8 @@ class MyApplication : Application() {
         EventBus.builder().addIndex(MyEventBusIndex()).installDefaultEventBus()
         wanAndroidModule = WanAndroidModuleImpl(this)
         pexelsResourceModule = PexelsResourceModuleImpl(this)
+        Pluto.Installer(this)
+            .addPlugin(PlutoLayoutInspectorPlugin())
+            .install()
     }
 }

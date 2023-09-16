@@ -11,4 +11,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fragment_bg">#EFECEC</color>
     <color name="delete_bg">#DD5757</color>
+
+    <color name="shimmer_color">#FFFFFA</color>
+    <color name="shimmer_item_color">#C2C2C2</color>
 </resources>

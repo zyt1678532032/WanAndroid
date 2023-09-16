@@ -64,9 +64,6 @@ internal class TopArticleItemHolder(
     val rootViewOfTopItem = binding.root
 
     fun bindItemData(articles: List<Article>, position: Int) {
-        if (position == articles.size - 1) {
-            (rootViewOfTopItem.layoutParams as ViewGroup.MarginLayoutParams).marginEnd = 0
-        }
         val article = articles[position]
         binding.articleTitle.text = article.title
         binding.articleAuthor.text = article.author
