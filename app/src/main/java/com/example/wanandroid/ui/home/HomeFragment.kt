@@ -6,15 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.wanandroid.MyApplication
 import com.example.wanandroid.ui.ArticleDetailActivity
 import com.example.wanandroid.ui.home.adapter.ArticleAdapter
+import com.example.wanandroid.util.network.RequestStatus
 import com.example.wanandroid.util.viewModelFactory
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -71,8 +76,23 @@ class HomeFragment : Fragment() {
             })
         }
 
-        homeViewModel.articles.observe(viewLifecycleOwner) {
-            articleAdapter.articles = it
+        // homeViewModel.articles.observe(viewLifecycleOwner) {
+        //     articleAdapter.articles = it
+        // }
+
+
+        lifecycleScope.launch {
+            homeViewModel.getData().collectLatest {
+                if (it.status == RequestStatus.LOADING) {
+                    binding.shimmerTopArticleContainer.isVisible = true
+                    binding.shimmerArticleContainer.isVisible = true
+                }
+                if (it.status == RequestStatus.SUCCESS) {
+                    binding.shimmerTopArticleContainer.isVisible = false
+                    binding.shimmerArticleContainer.isVisible = false
+                    articleAdapter.articles = it.data ?: emptyList()
+                }
+            }
         }
 
     }

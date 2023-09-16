@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/holder_article_horizontal"
+    android:layout_marginVertical="@dimen/holder_article_marginTop"
+    android:background="@drawable/shimmer_background"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/img_normal_article_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/article_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/article_image"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/shimmer_shape"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/article_title"
+        style="@style/text_article_title_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/shimmer_shape"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/article_author"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/article_author"
+        style="@style/text_article_author_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shimmer_shape"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tags_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/article_title"
+        app:layout_constraintTop_toBottomOf="@+id/article_title"
+        app:layout_constraintVertical_weight="1" />
+
+    <!-- 标签栏 -->
+    <LinearLayout
+        android:id="@+id/tags_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shimmer_shape"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/article_author"
+        app:layout_constraintTop_toBottomOf="@+id/article_author"
+        app:layout_constraintVertical_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
     android:layout_height="250dp"
     android:layout_marginHorizontal="@dimen/holder_article_horizontal"
     android:layout_marginVertical="@dimen/holder_article_marginTop"
-    android:background="@drawable/viewholder_article_layout_bg"
+    android:background="@drawable/shimmer_background"
     android:paddingHorizontal="10dp"
     android:paddingVertical="10dp">
 
@@ -24,7 +23,7 @@
             android:id="@+id/article_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/pexels" />
+            android:background="@drawable/shimmer_shape" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -33,13 +32,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:background="@drawable/shimmer_shape"
         android:ellipsize="end"
         android:maxLines="2"
         app:layout_constraintBottom_toTopOf="@id/article_author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_container"
-        tools:text="文章标题" />
+        app:layout_constraintTop_toBottomOf="@+id/img_container" />
 
     <TextView
         android:id="@+id/article_author"
@@ -47,10 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:background="@drawable/shimmer_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/article_title"
-        app:layout_constraintTop_toBottomOf="@+id/article_title"
-        tools:text="文章作者" />
+        app:layout_constraintTop_toBottomOf="@+id/article_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
