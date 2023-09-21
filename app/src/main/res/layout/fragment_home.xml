@@ -7,7 +7,7 @@
     android:background="@color/fragment_bg">
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_top_article_Container"
+        android:id="@+id/shimmer_top_article_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,12 +28,12 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_article_Container"
+        android:id="@+id/shimmer_article_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shimmer_top_article_Container">
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_top_article_container">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shimmer_article_Container"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_article_container"
         tools:itemCount="2"
         tools:listitem="@layout/viewholder_article_layout" />
 
