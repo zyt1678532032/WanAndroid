@@ -20,7 +20,7 @@ import com.example.wanandroid.util.UiUtils;
 public class SlidingMenu extends HorizontalScrollView {
 
     //菜单占屏幕宽度比
-    private static final float radio = 0.3f;
+    private static final float radio = 0.25f;
     private final int mScreenWidth;
     private final int mMenuWidth;
 

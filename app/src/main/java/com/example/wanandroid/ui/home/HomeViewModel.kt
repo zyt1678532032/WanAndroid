@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.domain.PexelsResourceRepository
 import com.example.wanandroid.domain.WanAndroidRepository
 import com.example.wanandroid.domain.bean.Article
+import com.example.wanandroid.domain.bean.toArticle
 import com.example.wanandroid.util.network.RequestStatus
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -43,31 +44,8 @@ class HomeViewModel(
                 )
             ) { normalArticles, topArticles, pexels ->
 
-                val articles = mutableListOf<Article>()
-                var indexForNormalArticle = topArticles.size
-                for (i in normalArticles.indices) {
-                    if (i == 0) {
-                        for (j in topArticles.indices) {
-                            articles += Article(
-                                title = topArticles[j].title,
-                                author = topArticles[j].author.ifEmpty { "匿名作者" },
-                                imageUrl = pexels[j].src?.original!!,
-                                link = topArticles[j].link,
-                                isTop = true
-                            )
-                        }
-                        continue
-                    }
-                    articles += Article(
-                        title = normalArticles[i].title,
-                        author = normalArticles[i].author.ifEmpty { "匿名作者" },
-                        imageUrl = pexels[indexForNormalArticle++].src?.original!!,
-                        link = normalArticles[i].link,
-                        isTop = false
-                    )
-                }
                 _status.postValue(RequestStatus.SUCCESS)
-                articles
+                normalArticles.toArticle(topArticles, pexels)
             }.onStart {
                 _status.postValue(RequestStatus.LOADING)
             }.collectLatest {
