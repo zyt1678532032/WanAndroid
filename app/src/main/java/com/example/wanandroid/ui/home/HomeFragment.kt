@@ -65,19 +65,13 @@ class HomeFragment : Fragment() {
         binding.recycleView.run {
             adapter = articleAdapter
             layoutManager = LinearLayoutManager(context)
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                    articleAdapter.setScrollingMenu(null)
-                }
-            })
         }
 
         homeViewModel.articles.observe(viewLifecycleOwner) {
             articleAdapter.articles = it
         }
 
-        homeViewModel.status.observe(viewLifecycleOwner){
+        homeViewModel.status.observe(viewLifecycleOwner) {
             if (it == RequestStatus.LOADING) {
                 binding.shimmerTopArticleContainer.isVisible = true
                 binding.shimmerArticleContainer.isVisible = true
