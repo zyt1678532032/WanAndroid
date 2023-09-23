@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication.databinding.ViewholderArticleLayoutBinding
 import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
-import com.example.wanandroid.ui.home.view.SlidingMenu
+import com.example.wanandroid.ui.home.view.protocol.SlidingComponent
+import com.example.wanandroid.ui.home.view.protocol.SlidingComponentManager
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
 
 class ArticleAdapter(
     private val itemClickListener: (Article) -> Unit,
     private val menuItemClickListener: () -> Unit
-) : RecyclerView.Adapter<ViewHolder>() {
+) : RecyclerView.Adapter<ViewHolder>(), SlidingComponentManager {
 
-    private var mOpenMenu: SlidingMenu? = null
-    private var mScrollingMenu: SlidingMenu? = null
+    private var mOpenedComponent: SlidingComponent? = null
 
     var articles: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -42,7 +42,7 @@ class ArticleAdapter(
                     parent,
                     false
                 )
-                ArticleHolder(binding)
+                ArticleHolder(binding = binding, componentManager = this@ArticleAdapter)
             }
 
             else -> {
@@ -68,12 +68,12 @@ class ArticleAdapter(
             TYPE_NORMAL_ARTICLE -> {
                 (holder as ArticleHolder).run {
                     bindItemData(articles[position])
-                    rootView.setContentClickListener {
+                    slidingComponent.setContentClickListener {
                         itemClickListener.invoke(articles[position])
                     }
                     menuView.setOnClickListener {
                         menuItemClickListener.invoke()
-                        mOpenMenu?.smoothScrollTo(0, 0) // 组件恢复原位
+                        mOpenedComponent?.closeComponent() // 组件恢复原位
                     }
                 }
             }
@@ -87,30 +87,15 @@ class ArticleAdapter(
         return TYPE_NORMAL_ARTICLE
     }
 
-    fun removeArticleItem(position: Int) {
-        val removeArticle = articles[position]
-        val index = articles.indexOf(removeArticle)
-        articles = articles.filter { it != removeArticle }
-        notifyItemChanged(index)
-    }
-
-    fun closeOpenMenu() {
-        if (mOpenMenu != null && mOpenMenu!!.isOpen) {
-            mOpenMenu?.closeMenu()
-            mOpenMenu = null
+    override fun closeOpenedComponent() {
+        if (mOpenedComponent != null && mOpenedComponent?.isOpened == true) {
+            mOpenedComponent?.closeComponent()
+            mOpenedComponent = null
         }
     }
 
-    fun holdOpenMenu(slidingMenu: SlidingMenu) {
-        mOpenMenu = slidingMenu
-    }
-
-    fun getOpenMenu(): SlidingMenu? = mOpenMenu
-
-    fun getScrollingMenu() = mScrollingMenu
-
-    fun setScrollingMenu(slidingMenu: SlidingMenu?) {
-        mScrollingMenu = slidingMenu
+    override fun setOpenedComponent(slidingComponent: SlidingComponent) {
+        mOpenedComponent = slidingComponent
     }
 
 }
