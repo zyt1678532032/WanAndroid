@@ -2,30 +2,25 @@ package com.example.wanandroid.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.wanandroid.MyApplication
 import com.example.wanandroid.ui.ArticleDetailActivity
 import com.example.wanandroid.ui.home.adapter.ArticleAdapter
+import com.example.wanandroid.util.ext.viewBinding
 import com.example.wanandroid.util.network.RequestStatus
 import com.example.wanandroid.util.viewModelFactory
 
+// 使用 viewBinding 必须使用构造器传递布局参数
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val binding by viewBinding<FragmentHomeBinding>()
 
     private val homeViewModel by activityViewModels<HomeViewModel> {
         viewModelFactory {
@@ -37,15 +32,6 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var articleAdapter: ArticleAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,10 +69,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
 
 class MessageEvent

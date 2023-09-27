@@ -5,17 +5,16 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivitySecondLayoutBinding
 import com.example.wanandroid.ui.home.MessageEvent
+import com.example.wanandroid.util.ext.viewBinding
 import org.greenrobot.eventbus.EventBus
 
 
 class SecondActivity : AppCompatActivity() {
 
-    private lateinit var bind: ActivitySecondLayoutBinding
+    private val bind: ActivitySecondLayoutBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bind = ActivitySecondLayoutBinding.inflate(layoutInflater)
-        setContentView(bind.root)
 
         bind.btn.setOnClickListener {
             EventBus.getDefault().post(MessageEvent())
