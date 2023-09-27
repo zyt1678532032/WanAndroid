@@ -23,9 +23,12 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         EventBus.builder().addIndex(MyEventBusIndex()).installDefaultEventBus()
+
         wanAndroidModule = WanAndroidModuleImpl(this)
         pexelsResourceModule = PexelsResourceModuleImpl(this)
+
         Pluto.Installer(this)
             .addPlugin(PlutoLayoutInspectorPlugin())
             .install()
