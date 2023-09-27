@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainLayoutBinding
 import com.example.wanandroid.ui.home.MessageEvent
+import com.example.wanandroid.util.ext.viewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -17,12 +18,10 @@ import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainLayoutBinding
+    private val binding: ActivityMainLayoutBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainLayoutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         // 注册Eventbus
         EventBus.getDefault().register(this)
         // 布局检测插件
