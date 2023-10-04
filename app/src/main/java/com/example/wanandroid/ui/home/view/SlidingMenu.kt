@@ -83,7 +83,7 @@ class SlidingMenu(context: Context, attrs: AttributeSet? = null) : HorizontalScr
         return super.performClick()
     }
 
-    override fun closeComponent() {
+    override fun close() {
         if (isOpened) {
             smoothScrollTo(0, 0)
             isOpened = false

@@ -73,7 +73,7 @@ class ArticleAdapter(
                     }
                     menuView.setOnClickListener {
                         menuItemClickListener.invoke()
-                        mOpenedComponent?.closeComponent() // 组件恢复原位
+                        mOpenedComponent?.close() // 组件恢复原位
                     }
                 }
             }
@@ -89,7 +89,7 @@ class ArticleAdapter(
 
     override fun closeOpenedComponent() {
         if (mOpenedComponent != null && mOpenedComponent?.isOpened == true) {
-            mOpenedComponent?.closeComponent()
+            mOpenedComponent?.close()
             mOpenedComponent = null
         }
     }

@@ -5,5 +5,6 @@ package com.example.wanandroid.ui.home.view.protocol
  */
 interface SlidingComponent {
     var isOpened: Boolean
-    fun closeComponent()
+
+    fun close()
 }
