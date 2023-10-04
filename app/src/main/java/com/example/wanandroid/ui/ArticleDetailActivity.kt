@@ -7,7 +7,7 @@ import com.example.wanandroid.util.ext.viewBinding
 
 class ArticleDetailActivity: AppCompatActivity() {
 
-    private val binding: ActivityArticleDetailLayoutBinding by viewBinding()
+    private val binding by viewBinding<ActivityArticleDetailLayoutBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

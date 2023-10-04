@@ -18,7 +18,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
-    private val binding: ActivityMainLayoutBinding by viewBinding()
+    private val binding by viewBinding<ActivityMainLayoutBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -47,13 +48,13 @@ class MainActivity : AppCompatActivity() {
         Log.i("onStart", "-----")
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = false)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = false)
     fun customEvent(messageEvent: MessageEvent) {
         Log.i("MainActivity", "customEvent:---$messageEvent")
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = false)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = false)
     fun customEvent2(messageEvent: MessageEvent) {
         Log.i("MainActivity", "customEvent2:---$messageEvent")
     }
