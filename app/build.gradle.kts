@@ -34,7 +34,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -71,10 +70,10 @@ dependencies {
     // Compose
     implementation(Dependencies.Compose.foundation)
     implementation(Dependencies.Compose.ui)
-    // Android Studio Preview support
+    implementation(Dependencies.Compose.material3)
+    // Compose Preview support
     implementation(Dependencies.Compose.uiToolingPreview)
     debugImplementation(Dependencies.Compose.uiTooling)
-    implementation(Dependencies.Compose.material3)
     // Shimmer
     implementation(Dependencies.shimmer)
     // Glide
@@ -82,6 +81,7 @@ dependencies {
     // EventBus
     implementation(Dependencies.EventBus.eventbus)
     kapt(Dependencies.EventBus.annotationProcessor)
+
     // pluto
     debugImplementation(Dependencies.Pluto.pluto)
     releaseImplementation(Dependencies.Pluto.plutoNoOp)

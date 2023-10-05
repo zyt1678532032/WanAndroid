@@ -1,20 +1,18 @@
 object Dependencies {
-    const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
-
-    object Google{
+    object Google {
         const val material = "com.google.android.material:material:${Versions.material}"
     }
 
     object Androidx {
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
-        const val coreKtx = "androidx.core:core-ktx:${Versions.androidx}"
-        const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.Androidx.constraintlayout}"
+        const val coreKtx = "androidx.core:core-ktx:${Versions.Androidx.coreKtx}"
+        const val appcompat = "androidx.appcompat:appcompat:${Versions.Androidx.appcompat}"
 
-        const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-        const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Androidx.lifecycle}"
+        const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Androidx.lifecycle}"
 
-        const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
-        const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+        const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.Androidx.navigation}"
+        const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.Androidx.navigation}"
     }
 
     object Retrofit {
@@ -37,13 +35,15 @@ object Dependencies {
         const val annotationProcessor = "org.greenrobot:eventbus-annotation-processor:${Versions.eventbus}"
     }
 
-    object Pluto{
+    object Pluto {
         const val pluto = "com.plutolib:pluto:${Versions.pluto}"
         const val plutoNoOp = "com.plutolib:pluto-no-op:${Versions.pluto}"
 
         const val pluginsLayoutInspector = "com.plutolib.plugins:layout-inspector:${Versions.pluto}"
         const val pluginsLayoutInspectorNoOp = "com.plutolib.plugins:layout-inspector-no-op:${Versions.pluto}"
     }
+
+    const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
 
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 
