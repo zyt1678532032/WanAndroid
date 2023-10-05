@@ -11,7 +11,7 @@ import org.greenrobot.eventbus.EventBus
 
 class SecondActivity : AppCompatActivity() {
 
-    private val bind: ActivitySecondLayoutBinding by viewBinding()
+    private val bind by viewBinding<ActivitySecondLayoutBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

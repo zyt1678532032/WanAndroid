@@ -7,8 +7,6 @@ interface WanAndroidRepository {
 
     fun getOriginArticles(): Flow<List<OriginArticle>>
 
-    fun getNumOfOriginArticles(): Flow<Int>
-
     fun getTopOriginArticles(): Flow<List<OriginArticle>>
 
 }

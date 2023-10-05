@@ -36,22 +36,22 @@ class ArticleAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
-            TYPE_NORMAL_ARTICLE -> {
-                val binding = ViewholderArticleLayoutBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-                ArticleHolder(binding = binding, componentManager = this@ArticleAdapter)
-            }
-
-            else -> {
+            TYPE_TOP_ARTICLE -> {
                 val binding = ViewholderTopArticleLayoutBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
                 TopArticleHolder(binding = binding, topArticleItemCallback = itemClickListener)
+            }
+
+            else -> {
+                val binding = ViewholderArticleLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                ArticleHolder(binding = binding, componentManager = this@ArticleAdapter)
             }
         }
     }
