@@ -19,6 +19,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        register("release") {
+            storeFile = file("/Users/rod.zhang/Desktop/key")
+            keyAlias = "key0"
+            storePassword = "zyt123.0"
+            keyPassword = "zyt123.0"
+        }
+    }
+
     buildTypes {
         debug {
 
@@ -29,12 +38,12 @@ android {
                 "proguard-rules.pro",
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -71,10 +80,10 @@ dependencies {
     // Compose
     implementation(Dependencies.Compose.foundation)
     implementation(Dependencies.Compose.ui)
-    // Android Studio Preview support
+    implementation(Dependencies.Compose.material3)
+    // Compose Preview support
     implementation(Dependencies.Compose.uiToolingPreview)
     debugImplementation(Dependencies.Compose.uiTooling)
-    implementation(Dependencies.Compose.material3)
     // Shimmer
     implementation(Dependencies.shimmer)
     // Glide
@@ -82,12 +91,15 @@ dependencies {
     // EventBus
     implementation(Dependencies.EventBus.eventbus)
     kapt(Dependencies.EventBus.annotationProcessor)
+
     // pluto
     debugImplementation(Dependencies.Pluto.pluto)
     releaseImplementation(Dependencies.Pluto.plutoNoOp)
     // Layout Inspector
     debugImplementation(Dependencies.Pluto.pluginsLayoutInspector)
     releaseImplementation(Dependencies.Pluto.pluginsLayoutInspectorNoOp)
+    // leakcanary
+    debugImplementation(Dependencies.leakcanary)
 
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.kotlinxCoroutinesTest)
