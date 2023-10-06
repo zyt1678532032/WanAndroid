@@ -19,6 +19,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        register("release") {
+            storeFile = file("/Users/rod.zhang/Desktop/key")
+            keyAlias = "key0"
+            storePassword = "zyt123.0"
+            keyPassword = "zyt123.0"
+        }
+    }
+
     buildTypes {
         debug {
 
@@ -29,6 +38,7 @@ android {
                 "proguard-rules.pro",
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
