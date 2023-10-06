@@ -6,12 +6,12 @@
 
    - 架构模式参考https://github.com/tolgaprm/Mova-MovieApp
 
-2. **手动实现依赖注入**
+2. **手动实现依赖注入(Dependency Inject)**
 
    - 实现方式参考: https://github.com/philipplackner/ManualDependencyInjection
 
-3. **依赖管理(Dependency managerment)**
+3. **依赖管理(Dependency management)**
 
 4. **项目截图**
 
-   <img src="https://i.giphy.com/media/hUa9Mc7xIZ4yxjvwtz/giphy.webp" onerror="this.onerror=null;this.src='https://i.giphy.com/hUa9Mc7xIZ4yxjvwtz.gif';" alt="">
+   <video src="./assets/screen_record.mov"></video>
