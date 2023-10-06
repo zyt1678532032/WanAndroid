@@ -14,4 +14,4 @@
 
 4. **项目截图**
 
-   <video src="./assets/screen_record.mov"></video>
+   <img src="https://i.giphy.com/media/MIyGfAZbSY9arXIhdh/giphy.webp" onerror="this.onerror=null;this.src='https://i.giphy.com/MIyGfAZbSY9arXIhdh.gif';" alt="">
