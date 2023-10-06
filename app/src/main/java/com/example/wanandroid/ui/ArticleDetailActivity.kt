@@ -15,4 +15,9 @@ class ArticleDetailActivity: AppCompatActivity() {
         val link = intent.getStringExtra("link") ?: "http://www.baidu.com"
         binding.webView.loadUrl(link)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.webView.destroy()
+    }
 }

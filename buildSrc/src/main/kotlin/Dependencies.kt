@@ -46,6 +46,7 @@ object Dependencies {
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
 
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
 
     const val junit = "junit:junit:${Versions.junit}"
 

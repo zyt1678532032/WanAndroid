@@ -18,6 +18,7 @@ object Versions {
     const val eventbus = "3.3.1"
     const val glide = "4.12.0"
     const val pluto = "2.1.6"
+    const val leakcanary = "2.12"
 
     const val junit = "4.13.2"
 

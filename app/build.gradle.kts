@@ -88,6 +88,8 @@ dependencies {
     // Layout Inspector
     debugImplementation(Dependencies.Pluto.pluginsLayoutInspector)
     releaseImplementation(Dependencies.Pluto.pluginsLayoutInspectorNoOp)
+    // leakcanary
+    debugImplementation(Dependencies.leakcanary)
 
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.kotlinxCoroutinesTest)
