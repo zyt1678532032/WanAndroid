@@ -19,6 +19,7 @@ object Versions {
     const val glide = "4.12.0"
     const val pluto = "2.1.6"
     const val leakcanary = "2.12"
+    const val myWidgets = "0.0.2"
 
     const val junit = "4.13.2"
 

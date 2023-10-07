@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication.databinding.ViewholderArticleLayoutBinding
 import com.example.myapplication.databinding.ViewholderTopArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
-import com.example.wanandroid.ui.home.view.protocol.SlidingComponent
-import com.example.wanandroid.ui.home.view.protocol.SlidingComponentManager
 import com.example.wanandroid.ui.home.viewholder.ArticleHolder
 import com.example.wanandroid.ui.home.viewholder.TopArticleHolder
+import com.zyt.widgets.views.protocol.SlidingComponent
+import com.zyt.widgets.views.protocol.SlidingComponentManager
 
 class ArticleAdapter(
     private val itemClickListener: (Article) -> Unit,
