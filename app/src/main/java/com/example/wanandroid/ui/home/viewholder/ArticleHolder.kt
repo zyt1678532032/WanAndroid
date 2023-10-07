@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ViewholderArticleLayoutBinding
 import com.example.wanandroid.domain.bean.Article
-import com.example.wanandroid.ui.home.view.protocol.SlidingComponentManager
+import com.zyt.widgets.views.protocol.SlidingComponentManager
 
 class ArticleHolder(
     private val binding: ViewholderArticleLayoutBinding,

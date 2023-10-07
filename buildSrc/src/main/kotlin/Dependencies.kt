@@ -43,8 +43,9 @@ object Dependencies {
         const val pluginsLayoutInspectorNoOp = "com.plutolib.plugins:layout-inspector-no-op:${Versions.pluto}"
     }
 
+    // MavenLocal中的自定义View
+    const val myWidgets = "com.zyt.widgets:my-widgets:${Versions.myWidgets}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
-
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
 

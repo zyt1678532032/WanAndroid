@@ -100,6 +100,8 @@ dependencies {
     releaseImplementation(Dependencies.Pluto.pluginsLayoutInspectorNoOp)
     // leakcanary
     debugImplementation(Dependencies.leakcanary)
+    // 从MavenLocal中拉取
+    implementation(Dependencies.myWidgets)
 
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.kotlinxCoroutinesTest)
