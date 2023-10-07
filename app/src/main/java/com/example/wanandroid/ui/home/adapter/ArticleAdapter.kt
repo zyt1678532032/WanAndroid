@@ -18,7 +18,7 @@ class ArticleAdapter(
     private val menuItemClickListener: () -> Unit
 ) : RecyclerView.Adapter<ViewHolder>(), SlidingComponentManager {
 
-    private var mOpenedComponent: SlidingComponent? = null
+    private var mSlidingComponent: SlidingComponent? = null
 
     var articles: List<Article> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -73,7 +73,7 @@ class ArticleAdapter(
                     }
                     menuView.setOnClickListener {
                         menuItemClickListener.invoke()
-                        mOpenedComponent?.close() // 组件恢复原位
+                        mSlidingComponent?.close() // 组件恢复原位
                     }
                 }
             }
@@ -88,14 +88,14 @@ class ArticleAdapter(
     }
 
     override fun closeOpenedComponent() {
-        if (mOpenedComponent != null && mOpenedComponent?.isOpened == true) {
-            mOpenedComponent?.close()
-            mOpenedComponent = null
+        if (mSlidingComponent != null && mSlidingComponent?.isOpened == true) {
+            mSlidingComponent?.close()
+            mSlidingComponent = null
         }
     }
 
     override fun setOpenedComponent(slidingComponent: SlidingComponent) {
-        mOpenedComponent = slidingComponent
+        mSlidingComponent = slidingComponent
     }
 
 }
