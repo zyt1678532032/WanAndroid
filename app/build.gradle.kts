@@ -34,6 +34,7 @@ android {
         }
         release {
             isMinifyEnabled = true
+            isShrinkResources = true // 资源瘦身
             proguardFiles(
                 "proguard-rules.pro",
                 @Suppress("UnstableApiUsage") getDefaultProguardFile("proguard-android-optimize.txt"),
