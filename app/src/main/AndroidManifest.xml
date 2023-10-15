@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="33">
+        <meta-data
+            android:name="API_KEY_PEXELS"
+            android:value="${API_KEY_PEXELS}" />
+
         <activity
             android:name="com.example.wanandroid.ui.MainActivity"
             android:exported="true">

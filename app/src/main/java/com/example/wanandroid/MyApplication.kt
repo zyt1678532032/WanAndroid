@@ -1,6 +1,7 @@
 package com.example.wanandroid
 
 import android.app.Application
+import android.content.pm.PackageManager
 import com.example.myapp.MyEventBusIndex
 import com.example.wanandroid.di.PexelsResourceModule
 import com.example.wanandroid.di.PexelsResourceModuleImpl
@@ -10,15 +11,11 @@ import com.pluto.Pluto
 import com.pluto.plugins.layoutinspector.PlutoLayoutInspectorPlugin
 import org.greenrobot.eventbus.EventBus
 
-
 class MyApplication : Application() {
 
     companion object {
         lateinit var wanAndroidModule: WanAndroidModule
         lateinit var pexelsResourceModule: PexelsResourceModule
-
-        // 图片资源 https://www.pexels.com/api/documentation/
-        const val PEXELS_TOKEN = "I4A2jQ10vvXMK6WUxRp292waX4GSjY6e2S2qqtkJfTAZWsCGRGzKbSmv"
     }
 
     override fun onCreate() {
@@ -34,3 +31,12 @@ class MyApplication : Application() {
             .install()
     }
 }
+
+// 图片资源 https://www.pexels.com/api/documentation/
+val Application.pexelsToken: String
+    get() {
+        // 初始化 API_KEY(实际内容在local.properties文件中存储)
+        val applicationInfo =
+            packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+        return applicationInfo.metaData.getString("API_KEY_PEXELS").toString()
+    }

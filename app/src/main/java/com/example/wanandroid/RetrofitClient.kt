@@ -1,5 +1,6 @@
 package com.example.wanandroid
 
+import android.app.Application
 import com.example.wanandroid.util.network.calladapter.FlowCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -11,7 +12,7 @@ object RetrofitClient {
     private var retrofit: Retrofit? = null
 
     @Synchronized
-    fun getRetrofitClient(): Retrofit {
+    fun getRetrofitClient(application: Application): Retrofit {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -28,16 +29,16 @@ object PexelsRetrofitClient {
     private const val BASE_URL = "https://api.pexels.com/"
     private var retrofit: Retrofit? = null
 
-    private val client = OkHttpClient.Builder()
-        .addInterceptor {
-            val request = it.request().newBuilder().header(
-                "Authorization", MyApplication.PEXELS_TOKEN
-            ).build()
-            it.proceed(request)
-        }.build()
-
     @Synchronized
-    fun getRetrofitClient(): Retrofit {
+    fun getRetrofitClient(application: Application): Retrofit {
+        val client = OkHttpClient.Builder()
+            .addInterceptor {
+                val request = it.request().newBuilder().header(
+                    "Authorization", application.pexelsToken
+                ).build()
+                it.proceed(request)
+            }.build()
+
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
