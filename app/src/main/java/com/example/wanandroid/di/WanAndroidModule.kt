@@ -1,6 +1,6 @@
 package com.example.wanandroid.di
 
-import android.content.Context
+import com.example.wanandroid.MyApplication
 import com.example.wanandroid.RetrofitClient
 import com.example.wanandroid.domain.WanAndroidApi
 import com.example.wanandroid.domain.WanAndroidRepository
@@ -12,11 +12,11 @@ interface WanAndroidModule {
 }
 
 class WanAndroidModuleImpl(
-    private val appContext: Context,
+    private val application: MyApplication,
 ) : WanAndroidModule {
 
     override val wanAndroidApi: WanAndroidApi by lazy {
-        RetrofitClient.getRetrofitClient().create(WanAndroidApi::class.java)
+        RetrofitClient.getRetrofitClient(application).create(WanAndroidApi::class.java)
     }
 
     override val wanAndroidRepository: WanAndroidRepository by lazy {
